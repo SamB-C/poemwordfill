@@ -1,4 +1,7 @@
 import { FAKE_SPACE, GET_ID } from "./utilities.js";
+export const GUIDE_CROSS_ID = "__dialog_cross__";
+export const GUIDE_CLOSE_ID = "__guide_close_button__";
+export const GUIDE_OPEN_TEXT_ID = "__guide_open__";
 export const POEM_ID = '__poem_id__';
 export const POEM_CONTAINER = '__main_content_container__';
 export const RANGEBAR_ID = '__range_bar__';
@@ -61,5 +64,29 @@ export const GET_ELEMENT = {
     },
     getHtmlElement() {
         return document.getElementsByTagName('html')[0];
+    },
+    /**
+     * @returns The Cross element in the guide modal
+     */
+    getGuideCross() {
+        return document.getElementById(GUIDE_CROSS_ID);
+    },
+    /**
+     * @returns The Close button element in the guide modal
+     */
+    getGuideClose() {
+        return document.getElementById(GUIDE_CLOSE_ID);
+    },
+    /**
+     * @returns The first dialog element
+     */
+    getDialog() {
+        return document.getElementsByTagName('dialog')[0];
+    },
+    /**
+     * @returns The text "here" that opens the guide dialog.
+     */
+    getGuideOpenText() {
+        return document.getElementById(GUIDE_OPEN_TEXT_ID);
     }
 };

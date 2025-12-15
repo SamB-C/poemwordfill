@@ -30,7 +30,7 @@
 </head>
 <body>
     <dialog id="__dialog__" class="card">
-        <span id="__dialog_cross__">&#xd7;</span>
+        <button id="__dialog_cross__">&#xd7;</button>
         <h1 id="__guide_title__">Guide</h1>
         <p id="__guide_desc__">See below for a step-by-step guide on how to use the features this website provides.</p>
         <h2 id="__guide_heading1__">1. Select Poem</h2>
@@ -39,7 +39,7 @@
         <p id="__guide_text2__">Use the dropdown menu to select the poem you wish to revise.</p>
         <h2 id="__guide_heading2__">2. Choose “Words” or “Quotes”</h2>
         <img  id="__guide_img2__" src="images/Dropdown.png" alt="Dropdown menu of different poems to select."/>
-        <p id="__guide_text3__">Use the radio buttons to select either “Words” or “Quotes”</p>
+        <p id="__guide_text3__">Use the radio buttons to select either “Words” or “Quotes”.</p>
         <img  id="__guide_img3__" src="images/Radio-Buttons.png" alt="Radio buttons to select either words or quotes."/>
         <div id="__guide_table__">
             <p>Words</p>
@@ -53,7 +53,7 @@
         <h2 id="__guide_heading4__">Viewing Notes (Computer Only)</h2>
         <p id="__guide_text5__">Hover your mouse over different phrases in the poem to reveal curated notes about them.</p>
         <div id="__guide_close__">   
-            <button>Close</button>
+            <button id="__guide_close_button__">Close</button>
         </div>
     </dialog>
     <div id="__computer__">
@@ -71,6 +71,7 @@
                     <input type="range" id="__range_bar__" value="1" min="1" max="10" title="Drag to adjust the percentage of words removed from the poem">
                     <p id="__range_bar_result__" title="The percentage of words removed from the poem"></p>
                 </div>
+                <p id="__guide_open_text__">Click <span id="__guide_open__">here</span> for a guide.</p>
             </div>
             <div id="__extra_info_container__" class="card">
                 <div id="__notes__">
@@ -115,10 +116,6 @@
                 document.getElementById('__credit_computer__').remove();
             }
             
-        </script>
-        <script defer>
-            const dialog = document.getElementById("__dialog__");
-            dialog.showModal();
         </script>
     </div>
 </body>

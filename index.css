@@ -85,17 +85,24 @@ button:hover {
     grid-template-columns: 65% 17%;
     place-content: center;
     column-gap: 1%;
+    margin-top: 1vh;
 }
 
 #__range_bar_result__ {
     text-align: center;
+    margin: 2vh 0;
 }
 
 #__range_bar_result__:hover {
     cursor: default;
 }
 
-#__range_bar__:hover, #__words__:hover, #__quotes__:hover, #__words_radio_button_label__, #__quotes_radio_button_label__ {
+#__range_bar__:hover, 
+#__words__:hover, 
+#__quotes__:hover, 
+#__words_radio_button_label__, 
+#__quotes_radio_button_label__,
+#__guide_open__:hover {
     cursor: pointer;
 }
 

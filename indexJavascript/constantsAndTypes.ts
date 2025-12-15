@@ -1,6 +1,10 @@
 import { Notes, Quotes } from "../notesAndKeyQuotes/utilities";
 import { FAKE_SPACE, GET_ID } from "./utilities.js";
 
+export const GUIDE_CROSS_ID = "__dialog_cross__";
+export const GUIDE_CLOSE_ID = "__guide_close_button__";
+export const GUIDE_OPEN_TEXT_ID = "__guide_open__";
+
 export const POEM_ID = '__poem_id__';
 export type POEM_CONTAINER_DOM_TYPE = HTMLParagraphElement;
 export const POEM_CONTAINER = '__main_content_container__';
@@ -130,5 +134,29 @@ export const GET_ELEMENT = {
     },
     getHtmlElement(): HTMLHtmlElement {
         return document.getElementsByTagName('html')[0] as HTMLHtmlElement;
+    },
+    /**
+     * @returns The Cross element in the guide modal
+     */
+    getGuideCross(): HTMLButtonElement {
+        return document.getElementById(GUIDE_CROSS_ID) as HTMLButtonElement;
+    },
+    /**
+     * @returns The Close button element in the guide modal
+     */
+    getGuideClose(): HTMLButtonElement {
+        return document.getElementById(GUIDE_CLOSE_ID) as HTMLButtonElement;
+    },
+    /**
+     * @returns The first dialog element
+     */
+    getDialog(): HTMLDialogElement {
+        return document.getElementsByTagName('dialog')[0] as HTMLDialogElement;
+    },
+    /**
+     * @returns The text "here" that opens the guide dialog.
+     */
+    getGuideOpenText(): HTMLSpanElement {
+        return document.getElementById(GUIDE_OPEN_TEXT_ID) as HTMLSpanElement;
     }
 }

@@ -9,6 +9,15 @@ dialog::backdrop {
     opacity: 0.75;
 }
 
+#__guide_open_text__ {
+    font-size: calc(var(--variable-font-size) * 0.55);
+    margin: 0;
+}
+
+#__guide_open__ {
+    text-decoration: underline;
+}
+
 #__dialog_cross__ {
     color: white;
     transition: color 0.5s ease-out;
@@ -21,17 +30,22 @@ dialog::backdrop {
     position: relative;
     grid-area: Cross;
     justify-self: right;
+    background: none;
+    border: none;
+    width: fit-content;
+    height: min-content;
 }
 #__dialog_cross__:hover {
     cursor: pointer;
     color:red;
+    box-shadow: none;
 }
 
 #__dialog__ {
     padding: 3vh;   /* Must use id selector to override paddding in .card */
 }
 
-dialog {
+dialog[open] {
     display: grid;
     width: 75%;
     grid-template-columns: 1fr 1fr;
