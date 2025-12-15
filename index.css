@@ -37,13 +37,33 @@ p, input::-webkit-input-placeholder {
     color: var(--secondary-color)
 }
 
-h1 {
+h1, h2 {
     color: var(--primary-color);
-    font-size: calc(var(--variable-font-size) * 1.2);
     font-family: var(--font-family);
 }
 
+h1 {
+    font-size: calc(var(--variable-font-size) * 1.2);
+}
 
+h2 {
+    font-size: var(--variable-font-size);
+}
+
+
+button {
+    width: 17vh;
+    height: 6vh;
+    background-color: rgba(256, 256, 256, 0.6);
+    border-radius: 1vh;
+    font-family: var(--font-family);
+    font-size: calc(var(--variable-font-size) * 0.8);
+    transition: box-shadow 0.5s ease-out
+}
+button:hover {
+    box-shadow: 0 0 1.5vh rgba(256, 256, 256, 0.7);
+    cursor: pointer;
+}
 
 .letter_input {
     width: 2.5vh;
