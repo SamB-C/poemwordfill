@@ -2,19 +2,27 @@ import { Quotes } from "../notesAndKeyQuotes/utilities.js";
 import { GET_ELEMENT, INPUT_OPTIONS, NUMBER_ONLY_REGEX } from "./constantsAndTypes.js";
 import { state } from "./index.js";
 import { onInputEventHandler } from "./letterInputEventHandler.js";
-import { getArrayOfChildrenThatAreInputs, GET_ID, isIlleagalLetter, WORD_FUNCS } from "./utilities.js";
+import { GET_ID, WORD_FUNCS, getArrayOfChildrenThatAreInputs, isDigit } from "./utilities.js";
 
 
 // =========================== Choose words to replace ===========================
 
 // --------------------------- Replace quotes in the poem ---------------------------
 
+/**
+ * Randomly selects correct number of quotes to replace with blanks to be filled in in the poem.
+ * @param quotes The quotes that can be replaced in the poem
+ * @returns A list of all the words in the poem that were replaced
+ */
 export function replaceQuotes(quotes: Quotes): Array<string> {
     const quotesToReplace: Array<Array<string>> = [];
+    // Gets number of quotes to replace
     const numberOfQuotesToReplace = Math.ceil((state.percentageWordsToRemove / 100) * quotes.length);
+    // Case where no quotes are to be replaced
     if (numberOfQuotesToReplace === 0) {
         return [];
     }
+    // Randomly select that number of unique quotes to replace
     while (quotesToReplace.length < numberOfQuotesToReplace) {
         const potentialQuote = quotes[Math.floor(Math.random() * quotes.length)];
         let wordAlreadySelected = false;
@@ -39,29 +47,41 @@ export function replaceQuotes(quotes: Quotes): Array<string> {
 
 // --------------------------- Replace words in the poem ---------------------------
 
-// Removes a certain number of words from the poem, and returns the words that were removed
-// in order of appearance
+/**
+ * Selects random words from the poem to remove, and replaces them with inputs in the DOM, returing the removed words
+ * @param currentPoem - The content of the current poem that the words are to be removed from
+ * @returns A list of all the words that were removed from the poem, in order of appearance
+ */
 export function replaceWords(currentPoem: string): Array<string> {
     const wordsReplaced: Array<string> = [];
+    // Find the number of words to replace
     const numberOfWordsToReplace = Math.ceil((state.percentageWordsToRemove / 100) * state.poemData[state.currentPoemName].wordCount)
+    // Case that no words are to be replaced
     if (numberOfWordsToReplace === 0) {
         return [];
     }
+    // Randomly select that number of unique words to replace
     while (wordsReplaced.length < numberOfWordsToReplace) {
         const potentialWord: string = selectRandomWordFromPoem(currentPoem);
         if (!wordsReplaced.includes(potentialWord)) {
             wordsReplaced.push(potentialWord);
         }
     }
+    // Sort the words in order of appearance in the poem
     insertionSortIntoOrderInPoem(currentPoem, wordsReplaced);
+    // Replace the words in the DOM
     const wordSectionsReplaced: Array<Array<string>> = wordsReplaced.map((word: string): Array<string> => replaceWord(word, currentPoem));
+    // Return words replaced in order of appearance
     return wordSectionsReplaced.reduce((accumulator: Array<string>, wordSections) => {
         return accumulator.concat(wordSections);
     });
 }
 
 
-// Selects a word at random from the poem
+/**
+ * @param poem The content of the poem to select a word from
+ * @returns The selected random word from the poem
+ */
 function selectRandomWordFromPoem(poem: string):string {
     // Select random line
     const lines: Array<string> = poem.split(/\n/);
@@ -75,7 +95,12 @@ function selectRandomWordFromPoem(poem: string):string {
 }
 
 
-// Sorts the missing word in the poem into the order of appearance so they can be focused in order
+/**
+ * Sorts the missing word in the poem into the order of appearance so they can be focused in order
+ * @param poem - The content of the poem to order the words by
+ * @param words - The words that need to be sorted
+ * @returns The sorted list of words
+ */
 function insertionSortIntoOrderInPoem(poem: string, words: Array<string>): Array<string> {
     for (let i: number = 1; i < words.length; i++) {
         let currentWordIndex: number = i
@@ -95,19 +120,28 @@ function insertionSortIntoOrderInPoem(poem: string, words: Array<string>): Array
 
 // =========================== Replacing words ===========================
 
-// Replaces a word from the poem in the HTML with underscores with equal length to the length of the word
+/**
+ * Replaces a word from the poem in the HTML with underscores with equal length to the length of the word
+ * @param word The word to replace with inputs in the DOM
+ * @param poem The content of the poem to replace the word in
+ * @returns A list of the word sections that have been replaced (eg "1phase1|+|1,1" -> ["1phase1", "1,1"])
+ */
 export function replaceWord(word: string, poem: string): Array<string> {
-    // Turn each word into letter inputs
+    // Get word sections to hide
     const wordSectionsToHide = WORD_FUNCS.getWordSectionsFromWord(word);
     const nonEmptySectionsToHide = wordSectionsToHide.filter(word => !word.match(NUMBER_ONLY_REGEX));
+    // Turn each word section into letter inputs
     nonEmptySectionsToHide.forEach((wordSection) => {
+        // Get element of word (not word section) to hide
         const wordToHide: HTMLSpanElement = GET_ELEMENT.getElementOfWord(wordSection);
+        // Create html for the word section
         const wordInUnderScores: string = wordSection.split('').map((letter) => {
-            if (!isIlleagalLetter(letter)) {
+            if (!isDigit(letter)) {
                 const htmlForLetter: string = `<input ${INPUT_OPTIONS} id="${GET_ID.getIdForLetter(wordSection, letter)}"></input>`
                 return htmlForLetter;
             }
         }).join('');
+        // Replace the word in the DOM with the inputs
         wordToHide.innerHTML = wordInUnderScores;
         wordToHide.classList.add('extraSpace');
         // Adds the event handlers for the input
@@ -123,6 +157,10 @@ export function replaceWord(word: string, poem: string): Array<string> {
     return nonEmptySectionsToHide;
 }
 
+/**
+ * Truncates the input to one letter
+ * @param event The event that triggered the function
+ */
 function ensureMaxLengthNotExceeded(event: Event) {
     const targetInput = event.target as HTMLInputElement;
     const firstLetter = targetInput.value.charAt(0);
