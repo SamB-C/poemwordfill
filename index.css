@@ -54,11 +54,12 @@ h2 {
 button {
     width: 17vh;
     height: 6vh;
-    background-color: rgba(256, 256, 256, 0.6);
+    background-color: rgba(256, 256, 256, 0.85);
     border-radius: 1vh;
     font-family: var(--font-family);
     font-size: calc(var(--variable-font-size) * 0.8);
-    transition: box-shadow 0.5s ease-out
+    transition: box-shadow 0.5s ease-out;
+    border: none;
 }
 button:hover {
     box-shadow: 0 0 1.5vh rgba(256, 256, 256, 0.7);

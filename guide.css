@@ -9,6 +9,24 @@ dialog::backdrop {
     opacity: 0.75;
 }
 
+#__dialog_cross__ {
+    color: white;
+    transition: color 0.5s ease-out;
+    right: 0;
+    top: 0;
+    font-weight: 600;
+    font-size: var(--variable-font-size);
+    float: right;
+    top: 0;
+    position: relative;
+    grid-area: Cross;
+    justify-self: right;
+}
+#__dialog_cross__:hover {
+    cursor: pointer;
+    color:red;
+}
+
 #__dialog__ {
     padding: 3vh;   /* Must use id selector to override paddding in .card */
 }
@@ -18,6 +36,7 @@ dialog {
     width: 75%;
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
+        ". Cross"
         "Title Title"
         "Desc Desc"
         "Heading1 Heading1"
