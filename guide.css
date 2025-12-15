@@ -59,9 +59,18 @@ dialog img {
     box-shadow: 0 0 0.5vh rgba(255, 255, 255, 0.2);
 }
 
+dialog h2 {
+    font-size: calc(var(--variable-font-size) * 1.2);
+    margin-top: 4vh;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
 #__guide_title__ {
     grid-area: Title;
     place-self: center;
+    padding-top: 0;
+    font-size: calc(var(--variable-font-size) * 2);
 }
 #__guide_desc__ {
     grid-area: Desc;
