@@ -1,5 +1,5 @@
 import { FAKE_SPACE_HTML_ELEMENT, GET_ELEMENT, NUMBER_ONLY_REGEX, POEM_AUTHOR_ID, POEM_SELECT_ID, WORDS } from "./constantsAndTypes.js";
-import { initialisePoemOptions, initialiseRangebar, initialiseWordsOrQuotesRadioButtons } from "./inputs.js";
+import { initialisePoemSelect, initialiseRangebar, initialiseWordsOrQuotesRadioButtons, initialiseGuideInputs } from "./inputs.js";
 import { initialiseTryAgainLink } from "./letterInputEventHandler.js";
 import { initialiseNotesForPoem } from "./renderNotes.js";
 import { replaceQuotes, replaceWords } from "./replaceWordsOrQuotes.js";
@@ -10,15 +10,37 @@ fetch("convertedPoems.json")
     .then(response => response.json())
     .then(data => {
     poems = data;
+    initialiseGuideInputs();
     initialiseState(poems);
     initialiseWordsOrQuotesRadioButtons();
-    initialisePoemOptions();
+    initialisePoemSelect();
     initialise();
     addPoemAuthor();
     initialiseTryAgainLink();
     initialiseRangebar();
 });
 export const clearups = [];
+/**
+ * @param poems - The data from the convertedPoems.json file
+ *
+ * Initialises state of the poem such that:
+ *
+ * Current poem is 'The Manhunt'
+ *
+ * Poem data is the poems parameter
+ *
+ * Percentage of words to remove is 5
+ *
+ * Removal type is WORDS
+ *
+ * Focused word is ''
+ *
+ * Words not completed is []
+ *
+ * Words not completed preserved is []
+ *
+ * All attributes of userAid are 0
+*/
 function initialiseState(poems) {
     state = {
         currentPoemName: 'The Manhunt',
@@ -45,8 +67,11 @@ export function addPoemAuthor() {
     const poemAuthorElement = document.getElementById(POEM_AUTHOR_ID);
     poemAuthorElement.innerHTML = poemAuthor.toUpperCase();
 }
-// Align the text of poems either to side or center
-function centerPoem(poemElement) {
+/**
+ * If the poem is centered, aligns the poem to the center, otherwise aligns the poem to the left
+ * @param poemElement - The HTML element containing the poem
+ */
+function alignPoem(poemElement) {
     const currentPoemName = state.currentPoemName;
     const poemSelect = document.getElementById(POEM_SELECT_ID);
     const poemAuthor = document.getElementById(POEM_AUTHOR_ID);
@@ -61,52 +86,73 @@ function centerPoem(poemElement) {
         poemAuthor.style.textAlign = 'left';
     }
 }
-// --------------------------- Split poem and converty to HTML ---------------------------
-// Splits a poem into lines, adds breaks to the end of each line (whilst also calling splitLineToWords to each line)
-// Then joins all the lines back together and returns the poem
+// --------------------------- Split poem and convert to HTML ---------------------------
+/**
+ * Splits a poem into lines, adds breaks to the end of each line (whilst also calling splitLineToWords to each line).
+ * Then joins all the lines back together and returns the poem
+ * @param poem - The content of the poem to be split into lines
+ * @returns The HTML to be rendered for the poem
+ */
 function splitPoemToNewLines(poem) {
     const split_poem = poem.split(/\n/);
     return split_poem.map((line) => {
         return splitLineToWords(line) + "</br>";
     }).join('');
 }
-// Splits a line into words, adds a span around it with the id equal to the word
-// Then joins all the words back together and returns a line
+/**
+ * Splits a line into words, adds a span around it with the id equal to the word.
+ * Then joins all the words back together and returns a line.
+ * Deals with cases where words contain punctuation.
+ * @param line - The line of the poem to split into words
+ * @returns
+ */
 function splitLineToWords(line) {
+    // Split into words
     const split_line = line.split(/ /);
+    // For each word
     return split_line.map((word) => {
+        // Split the word into text and punctuation
         const sectionsToMakeSpanFor = WORD_FUNCS.getWordSectionsFromWord(word);
         if (sectionsToMakeSpanFor.length === 1) {
+            // If the word is just text, return the word with the correct span around it
             return makeSpanForWord(word);
         }
         else {
+            // If the word is text an punctuation, return all sections of the word with the correct spans
+            // each seperated by a fake space element
             return sectionsToMakeSpanFor.map((word) => {
                 return makeSpanForWord(word);
             }).join(FAKE_SPACE_HTML_ELEMENT);
         }
     }).join(' ');
 }
+/**
+ * @param word - The word to make a span around
+ * @returns The HTML to be rendered for the word
+ */
 function makeSpanForWord(word) {
     if (!word.match(NUMBER_ONLY_REGEX)) {
-        const wordId = GET_ID.getIdForWord(word);
+        const wordId = GET_ID.formatIdForWord(word);
         return `<span id="${wordId}" class="wordSection">` + WORD_FUNCS.removeNumberFromWord(word) + "</span>";
     }
     else {
-        // Code for a space
+        // Spaces are represented as two numbers, so if a word is two numbers, it is a space
         return '&nbsp';
     }
 }
 // =========================== Intitalise poem ===========================
-// Initialises the poem, by rendering it in
+/**
+ * Renders in the poem specified in the state, and manages the words that have been removed from the poem
+ */
 export function initialise() {
     reset();
     // Render the correct poem
     const poemElement = GET_ELEMENT.getPoemElement();
     const currentPoemContent = state.poemData[state.currentPoemName].convertedPoem;
     poemElement.innerHTML = splitPoemToNewLines(currentPoemContent);
-    centerPoem(poemElement);
+    alignPoem(poemElement);
     // Replace words
-    let wordsThatHaveBeenReplaced = getWordsThatHaveBeenReplaced(currentPoemContent);
+    let wordsThatHaveBeenReplaced = replaceWordsOrQuotes(currentPoemContent);
     initialiseNotesForPoem();
     if (wordsThatHaveBeenReplaced.length !== 0) {
         focusFirstWord(wordsThatHaveBeenReplaced);
@@ -117,7 +163,12 @@ export function initialise() {
     }
     fixWidth();
 }
-function getWordsThatHaveBeenReplaced(currentPoemContent) {
+/**
+ * Replaces the correct percentage of words from the poem with inputs, and returns a list of all the words that were replaced (in order of appearance in the poem).
+ * @param currentPoemContent - The content of the poem whose words/quotes are to be replaced
+ * @returns A list of all the words that were removed from the poem
+ */
+function replaceWordsOrQuotes(currentPoemContent) {
     if (state.removalType === WORDS) {
         return replaceWords(currentPoemContent);
     }
@@ -139,6 +190,9 @@ function setStateToZero() {
     state.wordsNotCompletedPreserved = [];
     state.focusedWord = '';
 }
+/**
+ * Calls each of the clearup functions stored in the clearups array
+ */
 function reset() {
     clearups.forEach(clearup => clearup());
 }

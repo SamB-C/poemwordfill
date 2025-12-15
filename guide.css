@@ -1,0 +1,144 @@
+dialog::backdrop {
+    background-image: linear-gradient(
+        45deg,
+        magenta,
+        rebeccapurple,
+        dodgerblue,
+        green
+    );
+    opacity: 0.75;
+}
+
+#__guide_open_text__ {
+    font-size: calc(var(--variable-font-size) * 0.55);
+    margin: 0;
+}
+
+#__guide_open__ {
+    text-decoration: underline;
+}
+
+#__dialog_cross__ {
+    color: white;
+    transition: color 0.5s ease-out;
+    right: 0;
+    top: 0;
+    font-weight: 600;
+    font-size: var(--variable-font-size);
+    float: right;
+    top: 0;
+    position: relative;
+    grid-area: Cross;
+    justify-self: right;
+    background: none;
+    border: none;
+    width: fit-content;
+    height: min-content;
+}
+#__dialog_cross__:hover {
+    cursor: pointer;
+    color:red;
+    box-shadow: none;
+}
+
+#__dialog__ {
+    padding: 3vh;   /* Must use id selector to override paddding in .card */
+}
+
+dialog[open] {
+    display: grid;
+    width: 75%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        ". Cross"
+        "Title Title"
+        "Desc Desc"
+        "Heading1 Heading1"
+        "Text1 Img1"
+        "Text2 Img2"
+        "Heading2 Heading2"
+        "Text3 Img3"
+        "Table Table"
+        "Heading3 Heading3"
+        "Text4 Img4"
+        "Heading4 Heading4"
+        "Text5 Text5"
+        "Close Close";
+    padding: 50px;
+}
+
+dialog img {
+    width: 70%;
+    place-self: center;
+    box-shadow: 0 0 0.5vh rgba(255, 255, 255, 0.2);
+}
+
+dialog h2 {
+    font-size: calc(var(--variable-font-size) * 1.2);
+    margin-top: 4vh;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+#__guide_title__ {
+    grid-area: Title;
+    place-self: center;
+    padding-top: 0;
+    font-size: calc(var(--variable-font-size) * 2);
+}
+#__guide_desc__ {
+    grid-area: Desc;
+    text-align: center;
+}
+#__guide_heading1__ {
+    grid-area: Heading1
+}
+#__guide_heading2__ {
+    grid-area: Heading2
+}
+#__guide_heading3__ {
+    grid-area: Heading3
+}
+#__guide_heading4__ {
+    grid-area: Heading4
+}
+#__guide_text1__ {
+    grid-area: Text1
+}
+#__guide_text2__ {
+    grid-area: Text2
+}
+#__guide_text3__ {
+    grid-area: Text3
+}
+#__guide_text4__ {
+    grid-area: Text4
+}
+#__guide_text5__ {
+    grid-area: Text5
+}
+#__guide_img1__ {
+    grid-area: Img1
+}
+#__guide_img2__ {
+    grid-area: Img2
+}
+#__guide_img3__ {
+    grid-area: Img3
+}
+#__guide_img4__ {
+    grid-area: Img4
+}
+#__guide_close__ {
+    margin: 3vh;
+    grid-area: Close;
+    display: grid;
+    place-content: center;
+}
+#__guide_table__ {
+    grid-area: Table;
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    column-gap: 1vh;
+    align-items: center;
+}

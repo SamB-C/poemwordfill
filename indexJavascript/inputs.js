@@ -1,7 +1,9 @@
 import { GET_ELEMENT, QUOTES, WORDS } from "./constantsAndTypes.js";
 import { addPoemAuthor, initialise, state } from "./index.js";
 // =========================== Intitalise range bar ===========================
-// Initisalisation for the rangebar slider
+/**
+ * Initialises the range bar by setting the correct min, max, and value, and creating the correct event handlers
+ */
 export function initialiseRangebar() {
     const rangeBar = GET_ELEMENT.getRangeBar();
     // Sets min/max values for rangebar
@@ -13,6 +15,11 @@ export function initialiseRangebar() {
     rangeBarResult.innerHTML = rangeBar.value + '%';
     addRangebarEvents(rangeBar, rangeBarResult);
 }
+/**
+ * Creates event handlers for the range bar input element
+ * @param rangeBar The range bar element
+ * @param rangeBarResult The range bar result elemnent
+ */
 function addRangebarEvents(rangeBar, rangeBarResult) {
     // Don't re-render poem every time bar is dragged
     rangeBar.onpointerup = () => onRangebarInput(rangeBar);
@@ -22,7 +29,10 @@ function addRangebarEvents(rangeBar, rangeBarResult) {
         rangeBarResult.innerHTML = newValue + '%';
     };
 }
-// Event handler for the rangebar input that changes the number of missing words
+/**
+ * Event handler for the rangebar input that changes the number of missing words
+ * @param rangeBar The range bar element
+ */
 function onRangebarInput(rangeBar) {
     // Get new value from range
     const newValue = parseInt(rangeBar.value);
@@ -31,14 +41,23 @@ function onRangebarInput(rangeBar) {
     // Restart the poem with a new number of words
     initialise();
 }
-// Updates range bar in case it has been changed
+/**
+ * Sets the range bar to a specfic value
+ * @param rangeBar Range bar element
+ * @param initialValue Value that range bar should be set to
+ */
 export function updateRangeBar(rangeBar, initialValue) {
     if (initialValue !== rangeBar.value) {
         onRangebarInput(rangeBar);
     }
 }
 // =========================== Intitalise poem select bar ===========================
-export function initialisePoemOptions() {
+/**
+ * Initialises the poem select dropdown by adding the correct options and setting the correct poem to be selected
+ *
+ * The oninput event handler is set to onPoemSelectInput
+ */
+export function initialisePoemSelect() {
     const poemSelect = GET_ELEMENT.getPoemSelect();
     for (let poemName in state.poemData) {
         let newOption = `<option value="${poemName}">${poemName}</option>`;
@@ -49,6 +68,10 @@ export function initialisePoemOptions() {
     }
     poemSelect.oninput = () => onPoemSelectInput(poemSelect);
 }
+/**
+ * Changes the selected poem in the poem select dropdown and in the state, then initialises with the new state
+ * @param poemSelect - The dropdown element that contains the poem that can be selected
+ */
 function onPoemSelectInput(poemSelect) {
     const poemSelected = poemSelect.value;
     state.currentPoemName = poemSelected;
@@ -57,24 +80,41 @@ function onPoemSelectInput(poemSelect) {
     initialiseRangebar();
 }
 // =========================== Intitalise Radio buttons ===========================
-// Initialise the radio buttons so that their value is represented in the state
+/**
+ * Initialises the radio buttons by creating their oninput event handlers, and setting the correct button to be checked
+ */
 export function initialiseWordsOrQuotesRadioButtons() {
     const { wordsRadioButton, quotesRadioButton } = GET_ELEMENT.getRadioButtons();
-    wordsRadioButton.checked = true;
+    if (state.removalType === WORDS) {
+        wordsRadioButton.checked = true;
+    }
+    else {
+        quotesRadioButton.checked = true;
+    }
     wordsRadioButton.oninput = () => radioButtonOnInput(WORDS);
     quotesRadioButton.oninput = () => radioButtonOnInput(QUOTES);
 }
+/**
+ * Event handler for the radion buttons that changes the removal type in state, updates the range bar titles, and re-renders the poem with the new state
+ * @param removalType - Whether the radio button is for words or quotes
+ */
 function radioButtonOnInput(removalType) {
     state.removalType = removalType;
     updateRangeBarTitles(removalType);
     initialise();
 }
+/**
+ * Sets the titles of the range bar and range bar result elements to reflect the current removal type
+ * @param removalType - Whether words or quotes are currently being removed
+ */
 function updateRangeBarTitles(removalType) {
     GET_ELEMENT.getRangeBar().title = `Drag to adjust the percentage of ${removalType} removed from the poem`;
     GET_ELEMENT.getRangeBarResult().title = `The percentage of ${removalType} removed from the poem`;
 }
 // =========================== Disable and enable inputs ===========================
-// Disables inputs that re-render the poem, so it is not re-rendered mid-animation (opposite to resetInputs)
+/**
+ * Disables the range bar, poem select, and radio buttons so that the user cannot interact with them.
+ */
 export function disableInputs() {
     const rangeBar = GET_ELEMENT.getRangeBar();
     rangeBar.onpointerup = () => { };
@@ -84,7 +124,9 @@ export function disableInputs() {
     wordsRadioButton.disabled = true;
     quotesRadioButton.disabled = true;
 }
-// Resets event handler once the animation is complete (opposite to disableInputs)
+/**
+ * Resets the event handlers for the range bar, poem select, and radio buttons so that the user can interact with them.
+ */
 export function resetInputs() {
     const rangeBar = GET_ELEMENT.getRangeBar();
     const rangeBarResult = GET_ELEMENT.getRangeBarResult();
@@ -94,4 +136,25 @@ export function resetInputs() {
     const { wordsRadioButton, quotesRadioButton } = GET_ELEMENT.getRadioButtons();
     wordsRadioButton.disabled = false;
     quotesRadioButton.disabled = false;
+}
+// =========================== Intitalise guide closing inputs ===========================
+/**
+ * Sets the event handlers that open and close the dialog containing the guide.
+ * Opens the guide by default on startup.
+ */
+export function initialiseGuideInputs() {
+    const cross = GET_ELEMENT.getGuideCross();
+    const close = GET_ELEMENT.getGuideClose();
+    const dialog = GET_ELEMENT.getDialog();
+    const open = GET_ELEMENT.getGuideOpenText();
+    cross.onpointerup = () => closeModal(dialog);
+    close.onpointerup = () => closeModal(dialog);
+    function openModal() {
+        dialog.showModal();
+    }
+    open.onpointerup = () => openModal();
+    openModal();
+}
+function closeModal(modal) {
+    modal.close();
 }
