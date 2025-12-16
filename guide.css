@@ -63,6 +63,8 @@ dialog[open] {
         "Text4 Img4"
         "Heading4 Heading4"
         "Text5 Text5"
+        "Heading5 Heading5"
+        "Text6 Text6"
         "Close Close";
     padding: 50px;
 }
@@ -102,6 +104,9 @@ dialog h2 {
 #__guide_heading4__ {
     grid-area: Heading4
 }
+#__guide_heading5__ {
+    grid-area: Heading5;
+}
 #__guide_text1__ {
     grid-area: Text1
 }
@@ -116,6 +121,9 @@ dialog h2 {
 }
 #__guide_text5__ {
     grid-area: Text5
+}
+#__guide_text6__ {
+    grid-area: Text6
 }
 #__guide_img1__ {
     grid-area: Img1

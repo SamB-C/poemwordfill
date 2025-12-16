@@ -32,7 +32,7 @@
     <dialog id="__dialog__" class="card">
         <button id="__dialog_cross__">&#xd7;</button>
         <h1 id="__guide_title__">Guide</h1>
-        <p id="__guide_desc__">See below for a step-by-step guide on how to use the features this website provides.</p>
+        <p id="__guide_desc__">See below for a simple 4-step guide on how to use samsonbc.com to revise poetry!</p>
         <h2 id="__guide_heading1__">1. Select Poem</h2>
         <p id="__guide_text1__">Click on the title of the current poem.</p>
         <img id="__guide_img1__" src="images/Title.png" alt="Title, used to open dropdown menu."/>
@@ -49,9 +49,11 @@
         </div>
         <h2 id="__guide_heading3__">3. Select Difficulty</h2>
         <p id="__guide_text4__">Use the slider to select the percentage of words or quotes that you wish to remove.</p>
+        <h2 id="__guide_heading4__">4. Fill in the blanks!</h2>
+        <p id="__guide_text5__">Each of the removed words appears as a blank. Try to fill them in. If you get a letter wrong 3 times, it gives you the answer.</p>
         <img  id="__guide_img4__" src="images/Slider.png" alt="A slider bar, and an indicator of the percentage this represents."/>
-        <h2 id="__guide_heading4__">Viewing Notes (Computer Only)</h2>
-        <p id="__guide_text5__">Hover your mouse over different phrases in the poem to reveal curated notes about them.</p>
+        <h2 id="__guide_heading5__">Viewing Notes (Computer Only)</h2>
+        <p id="__guide_text6__">Hover your mouse over different phrases in the poem to reveal curated notes about them.</p>
         <div id="__guide_close__">   
             <button id="__guide_close_button__">Close</button>
         </div>
@@ -114,6 +116,8 @@
                 document.getElementsByTagName('html')[0].style.setProperty('--main-content-padding', '1.2vh');
                 document.getElementById('__main_content_container__').style.margin = '0 5px 7px 5px';
                 document.getElementById('__credit_computer__').remove();
+                document.getElementById('__guide_open_text__').remove();
+                document.getElementById('__dialog__').remove();
             }
             
         </script>
