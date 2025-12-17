@@ -108,25 +108,31 @@ export const GET_ELEMENT = {
         return document.getElementsByTagName('html')[0];
     },
     /**
-     * @returns The Cross element in the guide modal
+     * @returns The Cross element in the guide modal, or null.
      */
     getGuideCross() {
         return document.getElementById(GUIDE_CROSS_ID);
     },
     /**
-     * @returns The Close button element in the guide modal
+     * @returns The Close button element in the guide modal, or null.
      */
     getGuideClose() {
         return document.getElementById(GUIDE_CLOSE_ID);
     },
     /**
-     * @returns The first dialog element
+     * @returns The first dialog element, or null.
      */
     getDialog() {
-        return document.getElementsByTagName('dialog')[0];
+        const dialogs = document.getElementsByTagName('dialog');
+        if (dialogs.length === 0) {
+            return null;
+        }
+        else {
+            return dialogs[0];
+        }
     },
     /**
-     * @returns The text "here" that opens the guide dialog.
+     * @returns The text "here" that opens the guide dialog, or null.
      */
     getGuideOpenText() {
         return document.getElementById(GUIDE_OPEN_TEXT_ID);

@@ -177,27 +177,32 @@ export const GET_ELEMENT = {
         return document.getElementsByTagName('html')[0] as HTMLHtmlElement;
     },
     /**
-     * @returns The Cross element in the guide modal
+     * @returns The Cross element in the guide modal, or null.
      */
-    getGuideCross(): HTMLButtonElement {
-        return document.getElementById(GUIDE_CROSS_ID) as HTMLButtonElement;
+    getGuideCross(): HTMLButtonElement | null {
+        return document.getElementById(GUIDE_CROSS_ID) as HTMLButtonElement | null;
     },
     /**
-     * @returns The Close button element in the guide modal
+     * @returns The Close button element in the guide modal, or null.
      */
-    getGuideClose(): HTMLButtonElement {
-        return document.getElementById(GUIDE_CLOSE_ID) as HTMLButtonElement;
+    getGuideClose(): HTMLButtonElement | null {
+        return document.getElementById(GUIDE_CLOSE_ID) as HTMLButtonElement | null;
     },
     /**
-     * @returns The first dialog element
+     * @returns The first dialog element, or null.
      */
-    getDialog(): HTMLDialogElement {
-        return document.getElementsByTagName('dialog')[0] as HTMLDialogElement;
+    getDialog(): HTMLDialogElement | null {
+        const dialogs = document.getElementsByTagName('dialog');
+        if (dialogs.length === 0) {
+            return null
+        } else {
+            return dialogs[0]
+        }
     },
     /**
-     * @returns The text "here" that opens the guide dialog.
+     * @returns The text "here" that opens the guide dialog, or null.
      */
-    getGuideOpenText(): HTMLSpanElement {
-        return document.getElementById(GUIDE_OPEN_TEXT_ID) as HTMLSpanElement;
+    getGuideOpenText(): HTMLSpanElement | null {
+        return document.getElementById(GUIDE_OPEN_TEXT_ID) as HTMLSpanElement | null;
     }
 }

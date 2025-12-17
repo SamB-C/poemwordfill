@@ -166,6 +166,8 @@ export function resetInputs() {
 /**
  * Sets the event handlers that open and close the dialog containing the guide.
  * Opens the guide by default on startup.
+ * 
+ * The dialog element may not exist. If it doesn't, ignore, rather than trying to set event handlers.
  */
 export function initialiseGuideInputs() {
     const cross = GET_ELEMENT.getGuideCross();
@@ -173,15 +175,16 @@ export function initialiseGuideInputs() {
     const dialog = GET_ELEMENT.getDialog();
     const open = GET_ELEMENT.getGuideOpenText();
 
-    cross.onpointerup = () => closeModal(dialog);
-    close.onpointerup = () => closeModal(dialog);
-
-    function openModal() {
-        dialog.showModal();
+    if (dialog === null) {
+        return;
     }
-    open.onpointerup = () => openModal();
 
-    openModal();
+    if (cross !== null) cross.onpointerup = () => closeModal(dialog);
+    if (close !== null) close.onpointerup = () => closeModal(dialog);
+
+    if (open !== null) open.onpointerup = () => dialog.showModal();
+
+    dialog.showModal();
 }
 
 function closeModal(modal: HTMLDialogElement) {
