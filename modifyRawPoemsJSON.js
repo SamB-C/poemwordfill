@@ -4,17 +4,26 @@ fs.readdir('./poems/', function(err, files) {
     if (err) {
         console.error('Could not list files in directory.', err)
     } else {
+        // Get filenames
         const poemFiles = getAllTextFiles(files);
+        // Convert to JSON
         const resultJSON = getJSONofPoems(poemFiles);
+        // Put poems into correct order
         const order = getPoemOrder();
         const poemsInOrderJSON = orderPoems(order, resultJSON)
+        // Update file
         updateRawPoemsJSON(poemsInOrderJSON);
     }
 })
 
-
+/**
+ * Filters out all files that are not text files.
+ * @param {String[]} files A list of files.
+ * @returns A list of filenames.
+ */
 function getAllTextFiles(files) {
     const poemFiles = []
+    // Could use filter
     files.forEach((file) => {
         if (file.match(/.txt$/)) {
             poemFiles.push(file);
@@ -23,12 +32,23 @@ function getAllTextFiles(files) {
     return poemFiles;
 }
 
+/**
+ * Reads all files provided, and returns them in a JSON format.
+ * @param {String[]} poemFiles List of filenames.
+ * @returns An object of poems in format {"Title": "Content"}
+ */
 function getJSONofPoems(poemFiles) {
     const resultJSON = {};
+    // Could use reduce
     poemFiles.forEach((poem) => addPoemToJSON(poem, resultJSON));
     return resultJSON
 }
 
+/**
+ * Reads file, and adds file to JSON object. If peoms name in filename and title don't match, throw error.
+ * @param {string} file File to read
+ * @param {object} jsonFile Object to add poem to.
+ */
 function addPoemToJSON(file, jsonFile) {
     const poemName = file.replace('.txt', '');
     const content = fs.readFileSync(`./poems/${file}`, {encoding: 'utf8'});
@@ -39,11 +59,21 @@ function addPoemToJSON(file, jsonFile) {
     }
 }
 
+/**
+ * Gets the order of the poems from poem settings.
+ * @returns List of poem titles as strings.
+ */
 function getPoemOrder() {
     const orderJSON = fs.readFileSync('./poems/poemSettings.json', {encoding: 'utf8'});
     return JSON.parse(orderJSON)['order'];
 }
 
+/**
+ * 
+ * @param {string[]} order List of strings indicating order of poems in anthology.
+ * @param {object} poems JSON of all the poems.
+ * @returns Object containing all the poems in the correct order.
+ */
 function orderPoems(order, poems) {
     const poemsInOrder = {};
     order.forEach(poem => {
@@ -52,6 +82,10 @@ function orderPoems(order, poems) {
     return poemsInOrder;
 }
 
+/**
+ * Writes JSON to './rawPoems.json'.
+ * @param {Object} jsonObj Object to write.
+ */
 function updateRawPoemsJSON(jsonObj) {
     fs.writeFile('./rawPoems.json', JSON.stringify(jsonObj), (err) => {
         if (err) {
