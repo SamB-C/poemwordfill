@@ -6,6 +6,12 @@ import { getAllWordSectionsInPoem } from "./utilities.js";
 let numberOfDisplayedNotes = 0;
 
 export function initialiseNotesForPoem() {
+    const notesInfo = GET_ELEMENT.getNotesInfo();
+    if (Object.keys(state.poemData[state.currentPoemName].notes).length === 0) {
+        notesInfo.innerHTML = "<i>No notes for poem yet. Coming soon...</i>"
+    } else {
+        notesInfo.innerHTML = "<i>Hover over a word or phrase to show some notes about it</i>"
+    }
     const currentPoemContent: string = state.poemData[state.currentPoemName].convertedPoem;
     const allWordSectionsInPoem: Array<string> = getAllWordSectionsInPoem(currentPoemContent);
     allWordSectionsInPoem.forEach(wordSection => {
