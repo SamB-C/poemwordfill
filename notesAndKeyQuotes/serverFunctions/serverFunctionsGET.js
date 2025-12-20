@@ -8,14 +8,14 @@ function getFilename(req) {
     const query = url.parse(req.url, true);
     if (query.pathname === '/convertedPoems.json') {
         return './convertedPoems.json';
-    } else if (query.pathname === '/favicon.ico') {
+    } else if (query.pathname === '/favicon.ico' || query.pathname === '.well-known/appspecific/com.chrome.devtools.json') {
         return null
     } else {
         return './notesAndKeyQuotes' + query.pathname;
     }
 }
 
-function errorOccurred(err) {
+function errorOccurred(err, res) {
     console.log(err);
     res.writeHead(404, {'Content-Type': 'text/html'});
     return res.end('404 Not Found');
@@ -47,7 +47,7 @@ function handleGet(req, res) {
     console.log('Request for resource: ', filename);
     fs.readFile(filename, (err, data) => {
         if (err) {
-            errorOccurred(err);
+            errorOccurred(err, res);
         }
         const fileType = getFileType(filename);
         const { dataToWrite, contentType } = getContentTypeAndData(fileType, data);
