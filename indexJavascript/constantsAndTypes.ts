@@ -187,8 +187,8 @@ export const GET_ELEMENT = {
     /**
      * @returns The DOM paragraph element hinting to the user how to use the notes
      */
-    getNotesInfo(): NOTES_INFO_TYPE {
-        return document.getElementById(NOTES_INFO_ID) as NOTES_INFO_TYPE;
+    getNotesInfo(): NOTES_INFO_TYPE | null {
+        return document.getElementById(NOTES_INFO_ID) as NOTES_INFO_TYPE | null;
     },
     /**
      * @returns The entire HTML element from the DOM
