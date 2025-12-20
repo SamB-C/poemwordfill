@@ -199,7 +199,6 @@ export function disableQuotes() {
     const { wordsRadioButton, quotesRadioButton } = GET_ELEMENT.getRadioButtons();
     const quotesRadioButtonLabel = GET_ELEMENT.getQuotesRadioLabel();
     if (state.poemData[state.currentPoemName].quotes.length === 0) {
-        console.log('here');
         wordsRadioButton.click();
         quotesRadioButton.disabled = true;
         quotesRadioButtonLabel.children[0].classList.add("disabled");
