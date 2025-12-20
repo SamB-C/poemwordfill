@@ -1,20 +1,18 @@
 const fs = require('fs');
 
-fs.readdir('./poems/', function(err, files) {
-    if (err) {
-        console.error('Could not list files in directory.', err)
-    } else {
-        // Get filenames
-        const poemFiles = getAllTextFiles(files);
-        // Convert to JSON
-        const resultJSON = getJSONofPoems(poemFiles);
-        // Put poems into correct order
-        const order = getPoemOrder();
-        const poemsInOrderJSON = orderPoems(order, resultJSON)
-        // Update file
-        updateRawPoemsJSON(poemsInOrderJSON);
-    }
-})
+/**
+ * @returns {object} Raw poems
+ */
+function getPoemsRaw() {
+    files = fs.readdirSync('./poems/', 'utf-8')
+    // Get filenames
+    const poemFiles = getAllTextFiles(files);
+    // Convert to JSON
+    const resultJSON = getJSONofPoems(poemFiles);
+    // Put poems into correct order
+    const order = getPoemOrder();
+    return orderPoems(order, resultJSON)
+}
 
 /**
  * Filters out all files that are not text files.
@@ -84,10 +82,10 @@ function orderPoems(order, poems) {
 
 /**
  * Writes JSON to './rawPoems.json'.
- * @param {Object} jsonObj Object to write.
  */
-function updateRawPoemsJSON(jsonObj) {
-    fs.writeFile('./rawPoems.json', JSON.stringify(jsonObj), (err) => {
+function updateRawPoemsJSON() {
+    const poemsJSON = getPoemsRaw()
+    fs.writeFile('./rawPoems.json', JSON.stringify(poemsJSON), (err) => {
         if (err) {
             console.error(err);
         } else {
@@ -95,3 +93,5 @@ function updateRawPoemsJSON(jsonObj) {
         }
     })
 }
+
+module.exports = {getPoemsRaw, updateRawPoemsJSON}

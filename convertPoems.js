@@ -1,52 +1,51 @@
 const fs = require('fs');
 const { checkNotesAndQuotes } = require('./checkNotesAndQuotes');
+const { getPoemsRaw } = require('./modifyRawPoemsJSON');
 
 const SPECIAL_CHARACTER_REGEX = /[.,:;]/;
 const FAKE_SPACE = '|+|';
 
-fs.readFile('./rawPoems.json', 'utf8', (err, data) => {
-    if (err) throw err;
 
-    // Gets existing Converted Poems
-    const prevConvertedPoemsJSON = fs.readFileSync('./convertedPoems.json', {encoding: 'utf-8'});
-    const prevConvertedPoems = JSON.parse(prevConvertedPoemsJSON);
+// Gets existing Converted Poems
+const prevConvertedPoemsJSON = fs.readFileSync('./convertedPoems.json', {encoding: 'utf-8'});
+const prevConvertedPoems = JSON.parse(prevConvertedPoemsJSON);
 
-    const result = {};
-    const poems = JSON.parse(data);
-    const poemSettings = getPoemSettings();
-    // Iterate over all poems
-    Object.entries(poems).map((keyValuePair) => {
-        const poemName = keyValuePair[0];
-        const poemFileContent = keyValuePair[1];
+const result = {};
+const poems = getPoemsRaw();
+const poemSettings = getPoemSettings();
+// Iterate over all poems
+Object.entries(poems).map((keyValuePair) => {
+    const poemName = keyValuePair[0];
+    const poemFileContent = keyValuePair[1];
 
-        const { poemContent, poemAuthor } = getPoemNameContentAuthor(poemFileContent);
+    const { poemContent, poemAuthor } = getPoemNameContentAuthor(poemFileContent);
 
-        // Adds instance numbers around words, and adds in fake spaces where necessary.
-        const poemInfo = addInstanceNumbersToWords(poemName, poemContent);
+    // Adds instance numbers around words, and adds in fake spaces where necessary.
+    const poemInfo = addInstanceNumbersToWords(poemName, poemContent);
 
-        // Create object to write.
-        result[poemName] = poemInfo;
-        result[poemName]["author"] = poemAuthor;
-        if (prevConvertedPoems[poemName] !== undefined) {
-            // Poem already existed, so copy over notes and quotes. (Although poem may have been altered)
-            // TODO add seperate check before poemInfo, to see if poem hasn't changed at all
-            const prevQuotes = prevConvertedPoems[poemName]["quotes"];
-            const prevNotes = prevConvertedPoems[poemName]["notes"];
-            const newPoemContent = result[poemName]['convertedPoem'];
-            // Check that no notes and quotes have been made invalid by the edit
-            // TODO, automatically shift indexes in notes and quotes as needed if poem altered
-            const {validNotes, validQuotes} = checkNotesAndQuotes(prevNotes, prevQuotes, newPoemContent);
-            result[poemName]['quotes'] = validQuotes
-            result[poemName]['notes'] = validNotes;
-        } else {
-            result[poemName]['quotes'] = [];
-            result[poemName]['notes'] = {};
-        }
-        addSettings(poemSettings, poemName, result)
-        console.log(poemName, `by ${poemAuthor}` , poemInfo['wordCount']);
-    })
-    fs.writeFile('./convertedPoems.json', JSON.stringify(result, null, 4), (err) => {if (err) {throw err;} else {console.log('\nAll poems complete!')}});
-});
+    // Create object to write.
+    result[poemName] = poemInfo;
+    result[poemName]["author"] = poemAuthor;
+    if (prevConvertedPoems[poemName] !== undefined) {
+        // Poem already existed, so copy over notes and quotes. (Although poem may have been altered)
+        // TODO add seperate check before poemInfo, to see if poem hasn't changed at all
+        const prevQuotes = prevConvertedPoems[poemName]["quotes"];
+        const prevNotes = prevConvertedPoems[poemName]["notes"];
+        const newPoemContent = result[poemName]['convertedPoem'];
+        // Check that no notes and quotes have been made invalid by the edit
+        // TODO, automatically shift indexes in notes and quotes as needed if poem altered
+        const {validNotes, validQuotes} = checkNotesAndQuotes(prevNotes, prevQuotes, newPoemContent);
+        result[poemName]['quotes'] = validQuotes
+        result[poemName]['notes'] = validNotes;
+    } else {
+        result[poemName]['quotes'] = [];
+        result[poemName]['notes'] = {};
+    }
+    addSettings(poemSettings, poemName, result)
+    console.log(poemName, `by ${poemAuthor}` , poemInfo['wordCount']);
+})
+fs.writeFile('./convertedPoems.json', JSON.stringify(result, null, 4), (err) => {if (err) {throw err;} else {console.log('\nAll poems complete!')}});
+
 
 /**
  * Gets the poem name, content, and author from the raw string.
