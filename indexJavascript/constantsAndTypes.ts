@@ -63,6 +63,7 @@ export type LETTER_INPUT_TYPE = HTMLInputElement;
 
 export const REPLACE_WORDS_RADIO_BUTTON_ID = '__words__';
 export const REPLACE_QUOTES_RADIO_BUTTON_ID = '__quotes__';
+export const WORDS_RADIO_BUTTON_LABEL_ID = '__quotes_radio_button_label__';
 export type RADIO_BUTTONS_TYPE = HTMLInputElement;
 
 export const WORDS: WORDS_TYPE = 'words';
@@ -146,12 +147,18 @@ export const GET_ELEMENT = {
         return document.getElementById(RANGEBAR_RESULT_ID) as RANGEBAR_RESULT_TYPE;
     },
     /**
-     * @returns The words and quotes selection radio buttons form the DOM
+     * @returns The words and quotes selection radio buttons from the DOM
      */
     getRadioButtons(): {wordsRadioButton: RADIO_BUTTONS_TYPE, quotesRadioButton: RADIO_BUTTONS_TYPE} {
         const wordsRadioButton = document.getElementById(REPLACE_WORDS_RADIO_BUTTON_ID) as RADIO_BUTTONS_TYPE;
         const quotesRadioButton = document.getElementById(REPLACE_QUOTES_RADIO_BUTTON_ID) as RADIO_BUTTONS_TYPE;
         return {wordsRadioButton, quotesRadioButton};
+    },
+    /**
+     * @returns The label for quotes radio button from the DOM
+     */
+    getQuotesRadioLabel(): HTMLLabelElement {
+        return document.getElementById(WORDS_RADIO_BUTTON_LABEL_ID) as HTMLLabelElement
     },
     /**
      * @returns The try again link element that displays when a user has completed a poem, from the DOM

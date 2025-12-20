@@ -107,6 +107,14 @@ select:hover {
     cursor: pointer;
 }
 
+.disabled {
+    color: var(--credit-color);
+    cursor: default;
+}
+
+#__quotes__:disabled {
+    cursor: default;
+}
 
 #__anthology_select__ {
     width: 100%;

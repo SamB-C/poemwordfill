@@ -195,6 +195,21 @@ export function resetInputs() {
     quotesRadioButton.disabled = false;
 }
 
+export function disableQuotes() {
+    const { wordsRadioButton, quotesRadioButton } = GET_ELEMENT.getRadioButtons();
+    const quotesRadioButtonLabel = GET_ELEMENT.getQuotesRadioLabel();
+    if (state.poemData[state.currentPoemName].quotes.length === 0) {
+        console.log('here');
+        wordsRadioButton.click();
+        quotesRadioButton.disabled = true;
+        quotesRadioButtonLabel.children[0].classList.add("disabled");
+        quotesRadioButtonLabel.title = "No quotes for this poem yet :(. Coming soon...";
+    } else {
+        quotesRadioButton.disabled = false;
+        quotesRadioButtonLabel.children[0].classList.remove("disabled");
+        quotesRadioButtonLabel.title = "Select to remove random quotes from a curated list from the poem";
+    }
+}
 
 // =========================== Intitalise guide closing inputs ===========================
 

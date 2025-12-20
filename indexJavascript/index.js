@@ -1,5 +1,5 @@
 import { FAKE_SPACE_HTML_ELEMENT, GET_ELEMENT, CARD_ONLY_REGEX, POEM_AUTHOR_ID, POEM_SELECT_ID, WORDS } from "./constantsAndTypes.js";
-import { initialisePoemSelect, initialiseRangebar, initialiseWordsOrQuotesRadioButtons, initialiseGuideInputs, initialiseAnthologySelect } from "./inputs.js";
+import { initialisePoemSelect, initialiseRangebar, initialiseWordsOrQuotesRadioButtons, initialiseGuideInputs, initialiseAnthologySelect, disableQuotes } from "./inputs.js";
 import { initialiseTryAgainLink } from "./letterInputEventHandler.js";
 import { initialiseNotesForPoem } from "./renderNotes.js";
 import { replaceQuotes, replaceWords } from "./replaceWordsOrQuotes.js";
@@ -176,6 +176,7 @@ export function initialise() {
         setStateToZero();
     }
     fixWidth();
+    disableQuotes();
 }
 /**
  * Replaces the correct percentage of words from the poem with inputs, and returns a list of all the words that were replaced (in order of appearance in the poem).

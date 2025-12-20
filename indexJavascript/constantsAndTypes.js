@@ -27,6 +27,7 @@ export const NUMBER_OF_INCORRECT_ATTEMPTS_FOR_AID = 3;
 export const LETTER_INPUT_DEFAULT_COLOR = 'orange';
 export const REPLACE_WORDS_RADIO_BUTTON_ID = '__words__';
 export const REPLACE_QUOTES_RADIO_BUTTON_ID = '__quotes__';
+export const WORDS_RADIO_BUTTON_LABEL_ID = '__quotes_radio_button_label__';
 export const WORDS = 'words';
 export const QUOTES = 'quotes';
 /**
@@ -71,12 +72,18 @@ export const GET_ELEMENT = {
         return document.getElementById(RANGEBAR_RESULT_ID);
     },
     /**
-     * @returns The words and quotes selection radio buttons form the DOM
+     * @returns The words and quotes selection radio buttons from the DOM
      */
     getRadioButtons() {
         const wordsRadioButton = document.getElementById(REPLACE_WORDS_RADIO_BUTTON_ID);
         const quotesRadioButton = document.getElementById(REPLACE_QUOTES_RADIO_BUTTON_ID);
         return { wordsRadioButton, quotesRadioButton };
+    },
+    /**
+     * @returns The label for quotes radio button from the DOM
+     */
+    getQuotesRadioLabel() {
+        return document.getElementById(WORDS_RADIO_BUTTON_LABEL_ID);
     },
     /**
      * @returns The try again link element that displays when a user has completed a poem, from the DOM
