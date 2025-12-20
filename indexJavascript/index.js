@@ -8,22 +8,32 @@ export let state;
 let poems = {};
 fetch("convertedPoems.json")
     .then(response => response.json())
-    .then(data => {
-    poems = data;
-    initialiseGuideInputs();
-    initialiseState(poems);
-    initialiseWordsOrQuotesRadioButtons();
-    initialisePoemSelect();
-    initialise();
-    addPoemAuthor();
-    initialiseTryAgainLink();
-    initialiseRangebar();
+    .then(poemData => {
+    poems = poemData;
+    fetch("poems/anthologies.json")
+        .then(response => response.json())
+        .then(anthologies => {
+        anthologies;
+        initialiseGuideInputs();
+        initialiseState(poems, anthologies);
+        initialiseWordsOrQuotesRadioButtons();
+        initialisePoemSelect();
+        initialise();
+        addPoemAuthor();
+        initialiseTryAgainLink();
+        initialiseRangebar();
+    });
 });
 export const clearups = [];
 /**
  * @param poems - The data from the convertedPoems.json file
+ * @param anthologiesData - The data from the anthologies.json file
  *
  * Initialises state of the poem such that:
+ *
+ * Current anthology is 'Eduquas (Pre-2027)'
+ *
+ * Anthologies is the anthologies and the titles of the poems they contain
  *
  * Current poem is 'The Manhunt'
  *
@@ -41,8 +51,10 @@ export const clearups = [];
  *
  * All attributes of userAid are 0
 */
-function initialiseState(poems) {
+function initialiseState(poems, anthologiesData) {
     state = {
+        currentAnthology: 'Eduquas (Pre-2027)',
+        anthologies: anthologiesData,
         currentPoemName: 'The Manhunt',
         poemData: poems,
         percentageWordsToRemove: 5,
@@ -75,6 +87,7 @@ function alignPoem(poemElement) {
     const currentPoemName = state.currentPoemName;
     const poemSelect = document.getElementById(POEM_SELECT_ID);
     const poemAuthor = document.getElementById(POEM_AUTHOR_ID);
+    // TODO: Shouldn't this be state.poems? This would allow us to delete line 10
     if (poems[currentPoemName]['centered']) {
         poemElement.style.textAlign = 'center';
         poemSelect.style.textAlign = 'center';

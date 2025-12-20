@@ -59,7 +59,9 @@ export function updateRangeBar(rangeBar, initialValue) {
  */
 export function initialisePoemSelect() {
     const poemSelect = GET_ELEMENT.getPoemSelect();
-    for (let poemName in state.poemData) {
+    const poems = state.anthologies[state.currentAnthology];
+    for (let poemIndex in poems) {
+        const poemName = poems[poemIndex];
         let newOption = `<option value="${poemName}">${poemName}</option>`;
         if (poemName === state.currentPoemName) {
             newOption = `<option value="${poemName}" selected="seleted">${poemName}</option>`;

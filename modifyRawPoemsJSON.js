@@ -8,10 +8,7 @@ function getPoemsRaw() {
     // Get filenames
     const poemFiles = getAllTextFiles(files);
     // Convert to JSON
-    const resultJSON = getJSONofPoems(poemFiles);
-    // Put poems into correct order
-    const order = getPoemOrder();
-    return orderPoems(order, resultJSON)
+    return getJSONofPoems(poemFiles);
 }
 
 /**
@@ -57,28 +54,6 @@ function addPoemToJSON(file, jsonFile) {
     }
 }
 
-/**
- * Gets the order of the poems from poem settings.
- * @returns List of poem titles as strings.
- */
-function getPoemOrder() {
-    const orderJSON = fs.readFileSync('./poems/poemSettings.json', {encoding: 'utf8'});
-    return JSON.parse(orderJSON)['order'];
-}
-
-/**
- * 
- * @param {string[]} order List of strings indicating order of poems in anthology.
- * @param {object} poems JSON of all the poems.
- * @returns Object containing all the poems in the correct order.
- */
-function orderPoems(order, poems) {
-    const poemsInOrder = {};
-    order.forEach(poem => {
-        poemsInOrder[poem] = poems[poem];
-    })
-    return poemsInOrder;
-}
 
 /**
  * Writes JSON to './rawPoems.json'.

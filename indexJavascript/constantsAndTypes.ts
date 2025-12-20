@@ -82,7 +82,13 @@ export type convertedPoemsJSON = {
     [nameOfPoem: string]: PoemData
 }
 
+export type Anthologies = {
+    [nameOfAnthology: string]: Array<string>
+}
+
 export type State = {
+    currentAnthology: string,
+    anthologies: Anthologies,
     currentPoemName: string,
     poemData: convertedPoemsJSON,
     percentageWordsToRemove: number,

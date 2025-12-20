@@ -1,4 +1,4 @@
-import { convertedPoemsJSON, FAKE_SPACE_HTML_ELEMENT, GET_ELEMENT, NUMBER_ONLY_REGEX, POEM_AUTHOR_ID, POEM_SELECT_ID, State, WORDS } from "./constantsAndTypes.js";
+import { Anthologies, convertedPoemsJSON, FAKE_SPACE_HTML_ELEMENT, GET_ELEMENT, NUMBER_ONLY_REGEX, POEM_AUTHOR_ID, POEM_SELECT_ID, State, WORDS } from "./constantsAndTypes.js";
 import { initialisePoemSelect, initialiseRangebar, initialiseWordsOrQuotesRadioButtons, initialiseGuideInputs } from "./inputs.js";
 import { initialiseTryAgainLink } from "./letterInputEventHandler.js";
 import { initialiseNotesForPoem } from "./renderNotes.js";
@@ -7,20 +7,24 @@ import { FOCUS, GET_ID, WORD_FUNCS } from "./utilities.js";
 
 export let state: State;
 
-
 let poems: convertedPoemsJSON = {}
 fetch("convertedPoems.json")
     .then(response => response.json())
-    .then(data => {
-        poems = data
-        initialiseGuideInputs();
-        initialiseState(poems);
-        initialiseWordsOrQuotesRadioButtons()
-        initialisePoemSelect();
-        initialise();
-        addPoemAuthor();
-        initialiseTryAgainLink();
-        initialiseRangebar();
+    .then(poemData => {
+        poems = poemData
+        fetch("poems/anthologies.json")
+            .then(response => response.json())
+            .then(anthologies => {
+                anthologies as Anthologies
+                initialiseGuideInputs();
+                initialiseState(poems, anthologies);
+                initialiseWordsOrQuotesRadioButtons()
+                initialisePoemSelect();
+                initialise();
+                addPoemAuthor();
+                initialiseTryAgainLink();
+                initialiseRangebar();
+            })
     });
 
 
@@ -28,8 +32,13 @@ export const clearups: Array<() => void> = [];
 
 /**
  * @param poems - The data from the convertedPoems.json file
+ * @param anthologiesData - The data from the anthologies.json file
  * 
  * Initialises state of the poem such that:
+ * 
+ * Current anthology is 'Eduquas (Pre-2027)'
+ * 
+ * Anthologies is the anthologies and the titles of the poems they contain
  * 
  * Current poem is 'The Manhunt'
  * 
@@ -47,8 +56,10 @@ export const clearups: Array<() => void> = [];
  * 
  * All attributes of userAid are 0
 */
-function initialiseState(poems: convertedPoemsJSON) {
+function initialiseState(poems: convertedPoemsJSON, anthologiesData: Anthologies) {
     state = {
+        currentAnthology: 'Eduquas (Pre-2027)',
+        anthologies: anthologiesData,
         currentPoemName: 'The Manhunt',
         poemData: poems,
         percentageWordsToRemove: 5,
@@ -85,6 +96,7 @@ function alignPoem(poemElement: HTMLElement) {
     const currentPoemName = state.currentPoemName;
     const poemSelect = document.getElementById(POEM_SELECT_ID) as HTMLSelectElement;
     const poemAuthor = document.getElementById(POEM_AUTHOR_ID) as HTMLParagraphElement;
+    // TODO: Shouldn't this be state.poems? This would allow us to delete line 10
     if (poems[currentPoemName]['centered']) {
         poemElement.style.textAlign = 'center';
         poemSelect.style.textAlign = 'center';
