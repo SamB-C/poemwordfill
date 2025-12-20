@@ -196,5 +196,20 @@ function giveWordInstanceNumber(word, instances) {
     else {
         instances[word] = 1;
     }
-    return NUMBERS[instances[word]] + word + NUMBERS[instances[word]];
+    const instancesOfWord = String(instances[word])
+    const numberAsCards = replaceNumbers(instancesOfWord)
+    return numberAsCards + word + numberAsCards;
+}
+
+/**
+ * Replaces all numbers in a string with cards.
+ * @param {string} s 
+ * @returns {string}
+ */
+function replaceNumbers(s) {
+    let result = s;
+    for (let index in NUMBERS) {
+        result = result.replaceAll(String(index), NUMBERS[index]);
+    }
+    return result;
 }

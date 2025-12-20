@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const convertedPoemsBackup = fs.readFileSync('./convertedPoemsBackup.json', {encoding: 'utf-8'});
+const convertedPoemsBackup = fs.readFileSync('./convertedPoemsBackupCards.json', {encoding: 'utf-8'});
 fs.writeFile('./convertedPoems.json', JSON.stringify(JSON.parse(convertedPoemsBackup), null, 4), (err) => {
     if (err) {
         console.log("Backup not restored:");
