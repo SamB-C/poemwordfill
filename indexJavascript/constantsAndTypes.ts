@@ -16,7 +16,8 @@ export const RANGEBAR_RESULT_ID = '__range_bar_result__';
 export type RANGEBAR_RESULT_TYPE = HTMLParagraphElement;
 
 export const POEM_SELECT_ID = '__poem_selection__';
-export type POEM_SELECT_TYPE = HTMLSelectElement;
+export const ANTHOLOGY_SELECT_ID = '__anthology__';
+export type SELECT_TYPE = HTMLSelectElement;
 
 export const NOTES_ID = '__notes__';
 export type NOTES_TYPE = HTMLDivElement;
@@ -127,10 +128,16 @@ export const GET_ELEMENT = {
         return document.getElementById(RANGEBAR_ID) as RANGEBAR_TYPE;
     },
     /**
+     * @returns The dropdown anthology selection element from the DOM
+     */
+    getAnthologySelect(): SELECT_TYPE {
+        return document.getElementById(ANTHOLOGY_SELECT_ID) as SELECT_TYPE
+    },
+    /**
      * @returns The dropdown poem selection element from the DOM
      */
-    getPoemSelect(): POEM_SELECT_TYPE {
-        return document.getElementById(POEM_SELECT_ID) as POEM_SELECT_TYPE;
+    getPoemSelect(): SELECT_TYPE {
+        return document.getElementById(POEM_SELECT_ID) as SELECT_TYPE;
     },
     /**
      * @returns The paragraph displaying the percentage of the words/quotes to remove from the poem

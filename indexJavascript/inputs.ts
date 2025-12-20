@@ -59,6 +59,38 @@ export function updateRangeBar(rangeBar: HTMLInputElement, initialValue: string)
     }
 }
 
+// =========================== Intitalise anthology select bar ===========================
+
+export function initialiseAnthologySelect(): void {
+    const anthologySelect = GET_ELEMENT.getAnthologySelect();
+    const anthologies = Object.keys(state.anthologies)
+    for (let anthologyIndex in anthologies) {
+        const anthology = anthologies[anthologyIndex];
+        let newOption: string = `<option value="${anthology}">${anthology}</option>`
+        if (anthology === state.currentAnthology) {
+            newOption = `<option value="${anthology}" selected="seleted">${anthology}</option>`
+        }
+        anthologySelect.innerHTML = anthologySelect.innerHTML + newOption;
+    }
+    anthologySelect.oninput = () => onAnthologySelectInput(anthologySelect);
+}
+
+/**
+ * Changes the selected poem in the poem select dropdown and in the state, then initialises with the new state
+ * @param poemSelect - The dropdown element that contains the poem that can be selected
+ */
+function onAnthologySelectInput(anthologySelect: HTMLSelectElement): void {
+    const anthologySelected: string = anthologySelect.value;
+    state.currentAnthology = anthologySelected;
+    state.currentPoemName = state.anthologies[state.currentAnthology][0];
+    initialisePoemSelect();
+    initialise();
+    addPoemAuthor()
+    initialiseRangebar();
+}
+
+
+
 // =========================== Intitalise poem select bar ===========================
 
 /**
@@ -68,6 +100,7 @@ export function updateRangeBar(rangeBar: HTMLInputElement, initialValue: string)
  */
 export function initialisePoemSelect(): void {
     const poemSelect = GET_ELEMENT.getPoemSelect();
+    poemSelect.innerHTML = ""
     const poems = state.anthologies[state.currentAnthology];
     for (let poemIndex in poems) {
         const poemName = poems[poemIndex];
@@ -75,9 +108,9 @@ export function initialisePoemSelect(): void {
         if (poemName === state.currentPoemName) {
             newOption = `<option value="${poemName}" selected="seleted">${poemName}</option>`
         }
-        poemSelect.innerHTML = poemSelect.innerHTML + newOption
+        poemSelect.innerHTML = poemSelect.innerHTML + newOption;
     }
-    poemSelect.oninput = () => onPoemSelectInput(poemSelect)
+    poemSelect.oninput = () => onPoemSelectInput(poemSelect);
 }
 
 /**

@@ -7,6 +7,7 @@ export const POEM_CONTAINER = '__main_content_container__';
 export const RANGEBAR_ID = '__range_bar__';
 export const RANGEBAR_RESULT_ID = '__range_bar_result__';
 export const POEM_SELECT_ID = '__poem_selection__';
+export const ANTHOLOGY_SELECT_ID = '__anthology__';
 export const NOTES_ID = '__notes__';
 export const NOTES_INFO_ID = '__notes_info__';
 export const NOTE_REMOVAL_DELAY = 1000;
@@ -50,6 +51,12 @@ export const GET_ELEMENT = {
      */
     getRangeBar() {
         return document.getElementById(RANGEBAR_ID);
+    },
+    /**
+     * @returns The dropdown anthology selection element from the DOM
+     */
+    getAnthologySelect() {
+        return document.getElementById(ANTHOLOGY_SELECT_ID);
     },
     /**
      * @returns The dropdown poem selection element from the DOM

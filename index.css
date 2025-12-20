@@ -102,9 +102,27 @@ button:hover {
 #__quotes__:hover, 
 #__words_radio_button_label__, 
 #__quotes_radio_button_label__,
-#__guide_open__:hover {
+#__guide_open__:hover,
+select:hover {
     cursor: pointer;
 }
+
+
+#__anthology_select__ {
+    width: 100%;
+    padding: 0 3vh;
+    text-align: center;
+}
+
+#__anthology__ {
+    font-size: var(--variable-font-size);
+    font-weight: 300;
+    height: fit-content;
+    margin-bottom: 3vh;
+    color: var(--secondary-color);
+    text-align: center;
+}
+
 
 
 select {

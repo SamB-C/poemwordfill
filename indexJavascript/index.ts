@@ -1,5 +1,5 @@
 import { Anthologies, convertedPoemsJSON, FAKE_SPACE_HTML_ELEMENT, GET_ELEMENT, NUMBER_ONLY_REGEX, POEM_AUTHOR_ID, POEM_SELECT_ID, State, WORDS } from "./constantsAndTypes.js";
-import { initialisePoemSelect, initialiseRangebar, initialiseWordsOrQuotesRadioButtons, initialiseGuideInputs } from "./inputs.js";
+import { initialisePoemSelect, initialiseRangebar, initialiseWordsOrQuotesRadioButtons, initialiseGuideInputs, initialiseAnthologySelect } from "./inputs.js";
 import { initialiseTryAgainLink } from "./letterInputEventHandler.js";
 import { initialiseNotesForPoem } from "./renderNotes.js";
 import { replaceQuotes, replaceWords } from "./replaceWordsOrQuotes.js";
@@ -18,7 +18,8 @@ fetch("convertedPoems.json")
                 anthologies as Anthologies
                 initialiseGuideInputs();
                 initialiseState(poems, anthologies);
-                initialiseWordsOrQuotesRadioButtons()
+                initialiseAnthologySelect();
+                initialiseWordsOrQuotesRadioButtons();
                 initialisePoemSelect();
                 initialise();
                 addPoemAuthor();

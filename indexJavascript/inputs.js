@@ -51,6 +51,33 @@ export function updateRangeBar(rangeBar, initialValue) {
         onRangebarInput(rangeBar);
     }
 }
+// =========================== Intitalise anthology select bar ===========================
+export function initialiseAnthologySelect() {
+    const anthologySelect = GET_ELEMENT.getAnthologySelect();
+    const anthologies = Object.keys(state.anthologies);
+    for (let anthologyIndex in anthologies) {
+        const anthology = anthologies[anthologyIndex];
+        let newOption = `<option value="${anthology}">${anthology}</option>`;
+        if (anthology === state.currentAnthology) {
+            newOption = `<option value="${anthology}" selected="seleted">${anthology}</option>`;
+        }
+        anthologySelect.innerHTML = anthologySelect.innerHTML + newOption;
+    }
+    anthologySelect.oninput = () => onAnthologySelectInput(anthologySelect);
+}
+/**
+ * Changes the selected poem in the poem select dropdown and in the state, then initialises with the new state
+ * @param poemSelect - The dropdown element that contains the poem that can be selected
+ */
+function onAnthologySelectInput(anthologySelect) {
+    const anthologySelected = anthologySelect.value;
+    state.currentAnthology = anthologySelected;
+    state.currentPoemName = state.anthologies[state.currentAnthology][0];
+    initialisePoemSelect();
+    initialise();
+    addPoemAuthor();
+    initialiseRangebar();
+}
 // =========================== Intitalise poem select bar ===========================
 /**
  * Initialises the poem select dropdown by adding the correct options and setting the correct poem to be selected
@@ -59,6 +86,7 @@ export function updateRangeBar(rangeBar, initialValue) {
  */
 export function initialisePoemSelect() {
     const poemSelect = GET_ELEMENT.getPoemSelect();
+    poemSelect.innerHTML = "";
     const poems = state.anthologies[state.currentAnthology];
     for (let poemIndex in poems) {
         const poemName = poems[poemIndex];
