@@ -54,7 +54,7 @@ export const clearups = [];
 */
 function initialiseState(poems, anthologiesData) {
     state = {
-        currentAnthology: 'Eduquas (Pre-2027)',
+        currentAnthology: 'Eduqas (Pre-2027)',
         anthologies: anthologiesData,
         currentPoemName: 'The Manhunt',
         poemData: poems,

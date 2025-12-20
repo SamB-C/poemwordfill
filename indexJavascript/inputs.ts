@@ -100,7 +100,7 @@ function onAnthologySelectInput(anthologySelect: HTMLSelectElement): void {
  */
 export function initialisePoemSelect(): void {
     const poemSelect = GET_ELEMENT.getPoemSelect();
-    poemSelect.innerHTML = ""
+    poemSelect.innerHTML = "";
     const poems = state.anthologies[state.currentAnthology];
     for (let poemIndex in poems) {
         const poemName = poems[poemIndex];

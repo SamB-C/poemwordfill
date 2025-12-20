@@ -59,7 +59,7 @@ export const clearups: Array<() => void> = [];
 */
 function initialiseState(poems: convertedPoemsJSON, anthologiesData: Anthologies) {
     state = {
-        currentAnthology: 'Eduquas (Pre-2027)',
+        currentAnthology: 'Eduqas (Pre-2027)',
         anthologies: anthologiesData,
         currentPoemName: 'The Manhunt',
         poemData: poems,
