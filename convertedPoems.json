@@ -5218,5 +5218,13 @@
             ]
         },
         "centered": false
+    },
+    "A Poison Tree": {
+        "convertedPoem": "1I1 1was1 1angry1 1with1 1my1 1friend1|+|1:1\n2I2 1told1 2my2 1wrath1|+|1,1 3my3 2wrath2 1did1 1end1|+|1.1\n3I3 2was2 2angry2 2with2 4my4 1for1|+|2:2\n4I4 2told2 1it1 1not1|+|2,2 5my5 3wrath3 2did2 1grow1|+|2.2\n11\n1And1 5I5 1water'd1 2it2 1in1 1fears1|+|3,3\n1Night1 1and1 1morning1 3with3 6my6 1tears1|+|1;1\n2And2 6I6 1sunned1 3it3 4with4 1smiles1|+|4,4\n3And3 5with5 1soft1 1deceitful1 1wiles1|+|3.3\n22\n4And4 4it4 1grew1 1both1 1day1 2and2 1night1|+|5,5\n1Till1 5it5 1bore1 1an1 1apple1 1bright1|+|2;2\n5And5 7my7 1foe1 1beheld1 6it6 1shine1|+|6,6\n6And6 1he1 1knew1 1that1 7it7 3was3 1mine1|+|7,7\n33\n7And7 1into1 8my8 1garden1 1stole1\n1When1 1the1 2night2 1had1 1veil'd1 2the2 1pole1|+|3:3\n1In1 3the3 2morning2 1glad1 7I7 1see1\n1My1 2foe2 1outstretch'd1 1beneath1 4the4 1tree1|+|4.4",
+        "wordCount": 101,
+        "author": "William Blake",
+        "quotes": [],
+        "notes": {},
+        "centered": false
     }
 }
