@@ -1,3 +1,6 @@
+// Module simply defines a file `handleGet` that responds with any file requested.
+
+
 const url = require('url');
 const fs = require('fs');
 
