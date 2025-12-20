@@ -1,5 +1,5 @@
 import { addNotes, addQuotes, currentQuote, highlightedText, initialiseEventHandlers } from './NotesAndQuotes.js';
-import { highlightText, removeNumbers, unHighlightText } from './utilities.js';
+import { highlightText, removeCards, unHighlightText } from './utilities.js';
 // Constants for ids
 const POEM_DISPLAY_ID = '__poem_id__';
 const POEM_AUTHOR_DISPLAY_ID = '__poem_author__';
@@ -160,7 +160,7 @@ function makeElementForWord(word, isfirstWord) {
         if (isfirstWord || word.match(/[.,:;]/)) {
             prefix = '';
         }
-        return prefix + `<span id="${word}">${removeNumbers(word)}</span>`;
+        return prefix + `<span id="${word}">${removeCards(word)}</span>`;
     }
 }
 // Sorts the missing word in the poem into the order of appearance so they can be focused in order
@@ -206,7 +206,7 @@ function changeQuoteText(poem, quoteParagraphElement) {
     const content = insertionSortIntoOrderInPoem(poem, highlightedText);
     let result = '';
     content.forEach(word => {
-        const noNumbers = removeNumbers(word);
+        const noNumbers = removeCards(word);
         let prefix = ' ';
         if (noNumbers.match(/[.,:;]/)) {
             prefix = '';

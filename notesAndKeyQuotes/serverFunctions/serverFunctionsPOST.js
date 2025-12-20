@@ -106,8 +106,8 @@ function editNote(existingNotes, oldIdentifier, newVersion, convertedPoem) {
  * @param {string} word 
  * @returns {string}
  */
-function removeNumbers(word) {
-    return word.split('').filter(letter => !letter.match(/[0-9]/)).join('')
+function removeCards(word) {
+    return word.split('').filter(letter => !letter.match(/[🃊🃁🃂🃃🃄🃅🃆🃇🃈🃉]/)).join('')
 }
 
 /**
@@ -118,7 +118,7 @@ function removeNumbers(word) {
  */
 function checkAllWordsConsecutive(words, quoteToCheck) {
     // Remove spaces
-    const wordsNoSpaces = words.filter(word => removeNumbers(word) !== '')
+    const wordsNoSpaces = words.filter(word => removeCards(word) !== '')
     // Get index of first word in quote in the poem
     const indexOfFirstWord = wordsNoSpaces.indexOf(quoteToCheck[0]);
     const errors = quoteToCheck.map((word, index) => {

@@ -1,4 +1,4 @@
-import { Anthologies, convertedPoemsJSON, FAKE_SPACE_HTML_ELEMENT, GET_ELEMENT, NUMBER_ONLY_REGEX, POEM_AUTHOR_ID, POEM_SELECT_ID, State, WORDS } from "./constantsAndTypes.js";
+import { Anthologies, convertedPoemsJSON, FAKE_SPACE_HTML_ELEMENT, GET_ELEMENT, CARD_ONLY_REGEX, POEM_AUTHOR_ID, POEM_SELECT_ID, State, WORDS } from "./constantsAndTypes.js";
 import { initialisePoemSelect, initialiseRangebar, initialiseWordsOrQuotesRadioButtons, initialiseGuideInputs, initialiseAnthologySelect } from "./inputs.js";
 import { initialiseTryAgainLink } from "./letterInputEventHandler.js";
 import { initialiseNotesForPoem } from "./renderNotes.js";
@@ -157,7 +157,7 @@ function splitLineToWords(line: string):string {
  * @returns The HTML to be rendered for the word
  */
 function makeSpanForWord(word: string): string {
-    if (!word.match(NUMBER_ONLY_REGEX)) {
+    if (!word.match(CARD_ONLY_REGEX)) {
         const wordId = GET_ID.formatIdForWord(word);
         return `<span id="${wordId}" class="wordSection">` + WORD_FUNCS.removeNumberFromWord(word) + "</span>";
     } else {

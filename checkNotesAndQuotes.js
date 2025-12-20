@@ -186,8 +186,8 @@ function checkQuoteOverlaps(quotes) {
  * @param {string} word 
  * @returns {string}
  */
-function removeNumbers(word) {
-    return word.split('').filter(letter => !letter.match(/[0-9]/)).join('');
+function removeCards(word) {
+    return word.split('').filter(letter => !letter.match(/[🃊🃁🃂🃃🃄🃅🃆🃇🃈🃉]/)).join('');
 }
 
 /**
@@ -227,7 +227,7 @@ function checkQuotesConsecutive(quotes, poemContent) {
     // Get all words in the poem
     const allWordsinPoem = getAllWordsInPoem(poemContent);
     quotes.forEach(quote => {
-        const wordsNoSpaces = allWordsinPoem.filter(word => removeNumbers(word) !== '')
+        const wordsNoSpaces = allWordsinPoem.filter(word => removeCards(word) !== '')
         const indexOfFirstWord = wordsNoSpaces.indexOf(quote[0])
         let valid = true;
         // Check that the words are consecutive.

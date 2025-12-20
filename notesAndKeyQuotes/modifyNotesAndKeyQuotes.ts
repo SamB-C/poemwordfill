@@ -1,5 +1,5 @@
 import { addNotes, addQuotes, currentQuote, highlightedText, initialiseEventHandlers } from './NotesAndQuotes.js';
-import { ConvertedPoems, highlightText, Notes, Quotes, removeNumbers, unHighlightText } from './utilities.js';
+import { ConvertedPoems, highlightText, Notes, Quotes, removeCards, unHighlightText } from './utilities.js';
 
 // Constants for ids
 const POEM_DISPLAY_ID: string = '__poem_id__';
@@ -183,7 +183,7 @@ function makeElementForWord(word: string, isfirstWord: boolean): string {
         if (isfirstWord || word.match(/[.,:;]/)) {
             prefix = ''
         }
-        return prefix + `<span id="${word}">${removeNumbers(word)}</span>`
+        return prefix + `<span id="${word}">${removeCards(word)}</span>`
     }
 }
 
@@ -232,7 +232,7 @@ function changeQuoteText(poem: string, quoteParagraphElement: HTMLParagraphEleme
     const content = insertionSortIntoOrderInPoem(poem, highlightedText);
         let result: string = '';
         content.forEach(word => {
-            const noNumbers = removeNumbers(word);
+            const noNumbers = removeCards(word);
             let prefix: string = ' ';
             if (noNumbers.match(/[.,:;]/)) {
                 prefix = ''

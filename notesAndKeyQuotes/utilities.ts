@@ -19,8 +19,8 @@ export type ConvertedPoems = {
 }
 
 // Functions used in more than one file
-export function removeNumbers(word: string): string {
-    return word.split('').filter(letter => !letter.match(/[0-9]/)).join('');
+export function removeCards(word: string): string {
+    return word.split('').filter(letter => !letter.match(/[🃊🃁🃂🃃🃄🃅🃆🃇🃈🃉]/)).join('');
 }
 
 export function highlightText(textToHighlight: Array<string>, color: string) {

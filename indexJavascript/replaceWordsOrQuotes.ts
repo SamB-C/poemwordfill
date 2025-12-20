@@ -1,5 +1,5 @@
 import { Quotes } from "../notesAndKeyQuotes/utilities.js";
-import { GET_ELEMENT, INPUT_OPTIONS, NUMBER_ONLY_REGEX } from "./constantsAndTypes.js";
+import { GET_ELEMENT, INPUT_OPTIONS, CARD_ONLY_REGEX } from "./constantsAndTypes.js";
 import { state } from "./index.js";
 import { onInputEventHandler } from "./letterInputEventHandler.js";
 import { GET_ID, WORD_FUNCS, getArrayOfChildrenThatAreInputs, isDigit } from "./utilities.js";
@@ -85,11 +85,11 @@ export function replaceWords(currentPoem: string): Array<string> {
 function selectRandomWordFromPoem(poem: string):string {
     // Select random line
     const lines: Array<string> = poem.split(/\n/);
-    const nonEmptyLines: Array<string> = lines.filter((line:string) => !line.match(NUMBER_ONLY_REGEX));
+    const nonEmptyLines: Array<string> = lines.filter((line:string) => !line.match(CARD_ONLY_REGEX));
     const randomLine: string = nonEmptyLines[Math.floor(Math.random() * nonEmptyLines.length)];
     // Select random word
     const words: Array<string> = randomLine.split(/ /);
-    const nonEmptyWords: Array<string> = words.filter((word:string) => !word.match(NUMBER_ONLY_REGEX));
+    const nonEmptyWords: Array<string> = words.filter((word:string) => !word.match(CARD_ONLY_REGEX));
     const randomWord: string = nonEmptyWords[Math.floor(Math.random() * nonEmptyWords.length)];
     return randomWord;
 }
@@ -129,7 +129,7 @@ function insertionSortIntoOrderInPoem(poem: string, words: Array<string>): Array
 export function replaceWord(word: string, poem: string): Array<string> {
     // Get word sections to hide
     const wordSectionsToHide = WORD_FUNCS.getWordSectionsFromWord(word);
-    const nonEmptySectionsToHide = wordSectionsToHide.filter(word => !word.match(NUMBER_ONLY_REGEX));
+    const nonEmptySectionsToHide = wordSectionsToHide.filter(word => !word.match(CARD_ONLY_REGEX));
     // Turn each word section into letter inputs
     nonEmptySectionsToHide.forEach((wordSection) => {
         // Get element of word (not word section) to hide

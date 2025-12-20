@@ -1,5 +1,5 @@
 import { currentPoemName, main, renderNotes, serverAddress } from "./modifyNotesAndKeyQuotes.js";
-import { ConvertedPoems, highlightText, Quotes, removeNumbers, unHighlightText } from "./utilities.js";
+import { ConvertedPoems, highlightText, Quotes, removeCards, unHighlightText } from "./utilities.js";
 
 type NoteType = "Note" | "Quote";
 type WordsNotConsecutiveError = {
@@ -53,7 +53,7 @@ export function addNotes(elmentToInsertInto: HTMLDivElement, arrNotes: Array<str
 export function addQuotes(elmentToInsertInto: HTMLDivElement, arrQuotes: Quotes, checkboxes: Array<HTMLInputElement>, poemName: string) {
     arrQuotes.forEach((quote: Array<string>) => {
         const reducedQuote: string = quote.join(' ');
-        const newQuoteElement = insertNoteOrQuote(elmentToInsertInto, reducedQuote, removeNumbers(quote.join(' ')), "Quote") as QuoteNodeType;
+        const newQuoteElement = insertNoteOrQuote(elmentToInsertInto, reducedQuote, removeCards(quote.join(' ')), "Quote") as QuoteNodeType;
         initialiseToggleSwitch(newQuoteElement, checkboxes);
         initialiseDeleteButton(newQuoteElement, reducedQuote, "Quote", poemName);
         newQuoteElement.onclick = () => {
@@ -214,21 +214,21 @@ async function displayResposnseError(res: Response, NotationType: NoteType, badQ
         let errorMessage: string = '';
         if (NotationType === "Quote") {
             const badQuote = badQuoteOrNote as Array<string>;
-            const erroneousQuote = badQuote.map(word => removeNumbers(word)).join(' ');
+            const erroneousQuote = badQuote.map(word => removeCards(word)).join(' ');
             if (err.errorType === 'Quote overlap') {
-                const incorrectWord = removeNumbers(err.error);
+                const incorrectWord = removeCards(err.error);
                 errorMessage = `Quote: "${erroneousQuote}" is invalid because word "${incorrectWord}" overlaps with another quote.`
             } else if (err.errorType === 'Words not consecutive') {
-                const incorrectSequence = err.error.incorrectSequence.map(word => removeNumbers(word))
-                const correctSequence = err.error.correctSequence.map(word => removeNumbers(word))
+                const incorrectSequence = err.error.incorrectSequence.map(word => removeCards(word))
+                const correctSequence = err.error.correctSequence.map(word => removeCards(word))
                 errorMessage = `Quote: "${erroneousQuote}" is invalid because words "${incorrectSequence.join(' ')}" are not consecutive.</br>Word "${correctSequence[0]}" should be followed by "${correctSequence[1]}".`;
             }
         } else {
             if (err.errorType === 'Note overlap four times') {
                 const badNote = badQuoteOrNote as {key: string, value: Array<string>};
                 const erroneousNoteText = badNote.key;
-                const erroneousNoteValue = badNote.value.map(word => removeNumbers(word)).join(' ');
-                const badWord = removeNumbers(err.error);
+                const erroneousNoteValue = badNote.value.map(word => removeCards(word)).join(' ');
+                const badWord = removeCards(err.error);
                 errorMessage = `Note: "${erroneousNoteText}" with words "${erroneousNoteValue}" is invalid becauseword "${badWord}" overlaps with three other notes.`
             }
         }

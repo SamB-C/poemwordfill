@@ -18,7 +18,10 @@ export const WORD_FUNCS = {
      * @returns The words with all numbers removed
      */
     removeNumberFromWord(word) {
-        return word.split('').filter(letter => !isDigit(letter)).join('');
+        return word
+            .split('')
+            .filter(letter => !isCard(letter))
+            .join('');
     }
 };
 /**
@@ -64,6 +67,14 @@ export function isDigit(letter) {
     return ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(letter);
 }
 /**
+ * Compares a letter against the cards 1 to 10 of diamonds to see if it is a card.
+ * @param letter Letter to check.
+ * @returns Whether the letter is a card or not.
+ */
+export function isCard(letter) {
+    return letter.match(/[🃊🃁🃂🃃🃄🃅🃆🃇🃈🃉]/) !== null;
+}
+/**
  * Helper functions used to focus the user on specific elements
  */
 export const FOCUS = {
@@ -104,13 +115,15 @@ export function getAllWordSectionsInPoem(poem) {
     }).reduce((accumulator, wordSections) => {
         return accumulator.concat(wordSections);
     });
-    return allWordSectionsInPoem.filter(wordSection => removeNumbers(wordSection) !== '');
+    return allWordSectionsInPoem.filter(wordSection => WORD_FUNCS.removeNumberFromWord(wordSection) !== '');
 }
 /**
  * Removes the instance numbers from a word
  * @param word The word to remove numbers from
  * @returns A word without the instance numbers
  */
-export function removeNumbers(word) {
+/*
+export function removeNumbers(word: string): string {
     return word.split('').filter(letter => !letter.match(/[0-9]/)).join('');
 }
+*/ 

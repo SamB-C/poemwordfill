@@ -1,6 +1,6 @@
 // Functions used in more than one file
-export function removeNumbers(word) {
-    return word.split('').filter(letter => !letter.match(/[0-9]/)).join('');
+export function removeCards(word) {
+    return word.split('').filter(letter => !letter.match(/[🃊🃁🃂🃃🃄🃅🃆🃇🃈🃉]/)).join('');
 }
 export function highlightText(textToHighlight, color) {
     textToHighlight.forEach((word) => {

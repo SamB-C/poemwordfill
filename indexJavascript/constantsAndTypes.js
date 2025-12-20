@@ -17,7 +17,7 @@ export const COMPLETION_TEXT_ID = '__completion_text__';
 export const COMPLETION_TEXT_COLOUR = '#00FF00';
 export const COMPLETION_BORDER_CSS = '1vh solid green';
 export const POEM_AUTHOR_ID = "__poem_author__";
-export const NUMBER_ONLY_REGEX = /^[0-9]+$/;
+export const CARD_ONLY_REGEX = /^[🃊🃁🃂🃃🃄🃅🃆🃇🃈🃉]+$/;
 export const SPECIAL_CHARACTER_REGEX = /[.,:;]/;
 export const FAKE_SPACE_HTML_ELEMENT = `<p class="fakeSpace">${FAKE_SPACE}</p>`;
 export const ANIMATION_SPEED = 20;

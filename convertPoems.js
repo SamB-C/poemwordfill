@@ -2,6 +2,7 @@ const fs = require('fs');
 const { checkNotesAndQuotes } = require('./checkNotesAndQuotes');
 const { getPoemsRaw } = require('./modifyRawPoemsJSON');
 
+const NUMBERS = ['🃊', '🃁', '🃂', '🃃', '🃄', '🃅', '🃆', '🃇', '🃈', '🃉'];
 const SPECIAL_CHARACTER_REGEX = /[.,:;]/;
 const FAKE_SPACE = '|+|';
 
@@ -195,5 +196,5 @@ function giveWordInstanceNumber(word, instances) {
     else {
         instances[word] = 1;
     }
-    return instances[word] + word + instances[word];
+    return NUMBERS[instances[word]] + word + NUMBERS[instances[word]];
 }

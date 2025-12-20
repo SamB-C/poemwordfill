@@ -1,4 +1,4 @@
-import { ANIMATION_SPEED, COMPLETION_BORDER_CSS, COMPLETION_TEXT_COLOUR, COVER_OVER_COMPLETED_WORDS, GET_ELEMENT, LETTER_INPUT_DEFAULT_COLOR, NUMBER_ONLY_REGEX, SPECIAL_CHARACTER_REGEX } from "./constantsAndTypes.js";
+import { ANIMATION_SPEED, COMPLETION_BORDER_CSS, COMPLETION_TEXT_COLOUR, COVER_OVER_COMPLETED_WORDS, GET_ELEMENT, LETTER_INPUT_DEFAULT_COLOR, CARD_ONLY_REGEX, SPECIAL_CHARACTER_REGEX } from "./constantsAndTypes.js";
 import { clearups, initialise, state } from "./index.js";
 import { disableInputs, resetInputs, updateRangeBar } from "./inputs.js";
 import { FOCUS, WORD_FUNCS, getAllWordSectionsInPoem, getArrayOfChildrenThatAreInputs } from "./utilities.js";
@@ -234,7 +234,7 @@ function changeAllWordsToColor(wordsToChange, wordsNotToChange, color, timeBetwe
         return setTimeout(callbackOption, timeBetweenConversion);
     }
     // Only change color if it was not on of the words completed by the user and is a actual word not a number (can be overridden)
-    if ((!wordsNotToChange.includes(wordToChange) || COVER_OVER_COMPLETED_WORDS) && !wordToChange.match(NUMBER_ONLY_REGEX)) {
+    if ((!wordsNotToChange.includes(wordToChange) || COVER_OVER_COMPLETED_WORDS) && !wordToChange.match(CARD_ONLY_REGEX)) {
         const wordElement = GET_ELEMENT.getElementOfWord(wordToChange);
         wordElement.style.color = color;
     }
