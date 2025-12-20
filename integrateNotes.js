@@ -1,5 +1,12 @@
+// Depricated 
+// DO NOT USE (I THINK)
+// Just confirming that it is no longer used before deleting.
+
+
+
 const fs = require('fs')
 
+// Get existing converted poems
 const convertedPoemsJSON = fs.readFileSync('./convertedPoems.json', {encoding: 'utf8'});
 const convertedPoem = JSON.parse(convertedPoemsJSON);
 
