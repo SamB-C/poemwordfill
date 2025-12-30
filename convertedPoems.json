@@ -24,11 +24,192 @@
         "centered": false
     },
     "A Poison Tree": {
-        "convertedPoem": "🃁I🃁 🃁was🃁 🃁angry🃁 🃁with🃁 🃁my🃁 🃁friend🃁|+|🃁:🃁\n🃂I🃂 🃁told🃁 🃂my🃂 🃁wrath🃁|+|🃁,🃁 🃃my🃃 🃂wrath🃂 🃁did🃁 🃁end🃁|+|🃁.🃁\n🃃I🃃 🃂was🃂 🃂angry🃂 🃂with🃂 🃄my🃄 🃁for🃁|+|🃂:🃂\n🃄I🃄 🃂told🃂 🃁it🃁 🃁not🃁|+|🃂,🃂 🃅my🃅 🃃wrath🃃 🃂did🃂 🃁grow🃁|+|🃂.🃂\n🃁🃁\n🃁And🃁 🃅I🃅 🃁water'd🃁 🃂it🃂 🃁in🃁 🃁fears🃁|+|🃃,🃃\n🃁Night🃁 🃁and🃁 🃁morning🃁 🃃with🃃 🃆my🃆 🃁tears🃁|+|🃁;🃁\n🃂And🃂 🃆I🃆 🃁sunned🃁 🃃it🃃 🃄with🃄 🃁smiles🃁|+|🃄,🃄\n🃃And🃃 🃅with🃅 🃁soft🃁 🃁deceitful🃁 🃁wiles🃁|+|🃃.🃃\n🃂🃂\n🃄And🃄 🃄it🃄 🃁grew🃁 🃁both🃁 🃁day🃁 🃂and🃂 🃁night🃁|+|🃅,🃅\n🃁Till🃁 🃅it🃅 🃁bore🃁 🃁an🃁 🃁apple🃁 🃁bright🃁|+|🃂;🃂\n🃅And🃅 🃇my🃇 🃁foe🃁 🃁beheld🃁 🃆it🃆 🃁shine🃁|+|🃆,🃆\n🃆And🃆 🃁he🃁 🃁knew🃁 🃁that🃁 🃇it🃇 🃃was🃃 🃁mine🃁|+|🃇,🃇\n🃃🃃\n🃇And🃇 🃁into🃁 🃈my🃈 🃁garden🃁 🃁stole🃁\n🃁When🃁 🃁the🃁 🃂night🃂 🃁had🃁 🃁veil'd🃁 🃂the🃂 🃁pole🃁|+|🃃:🃃\n🃁In🃁 🃃the🃃 🃂morning🃂 🃁glad🃁 🃇I🃇 🃁see🃁\n🃁My🃁 🃂foe🃂 🃁outstretch'd🃁 🃁beneath🃁 🃄the🃄 🃁tree🃁|+|🃄.🃄",
+        "convertedPoem": "🃁I🃁 🃁was🃁 🃁angry🃁 🃁with🃁 🃁my🃁 🃁friend🃁|+|🃁:🃁\n🃂I🃂 🃁told🃁 🃂my🃂 🃁wrath🃁|+|🃁,🃁 🃃my🃃 🃂wrath🃂 🃁did🃁 🃁end🃁|+|🃁.🃁\n🃃I🃃 🃂was🃂 🃂angry🃂 🃂with🃂 🃄my🃄 🃁foe🃁|+|🃂:🃂\n🃄I🃄 🃂told🃂 🃁it🃁 🃁not🃁|+|🃂,🃂 🃅my🃅 🃃wrath🃃 🃂did🃂 🃁grow🃁|+|🃂.🃂\n🃁🃁\n🃁And🃁 🃅I🃅 🃁water'd🃁 🃂it🃂 🃁in🃁 🃁fears🃁|+|🃃,🃃\n🃁Night🃁 🃁and🃁 🃁morning🃁 🃃with🃃 🃆my🃆 🃁tears🃁|+|🃁;🃁\n🃂And🃂 🃆I🃆 🃁sunned🃁 🃃it🃃 🃄with🃄 🃁smiles🃁|+|🃄,🃄\n🃃And🃃 🃅with🃅 🃁soft🃁 🃁deceitful🃁 🃁wiles🃁|+|🃃.🃃\n🃂🃂\n🃄And🃄 🃄it🃄 🃁grew🃁 🃁both🃁 🃁day🃁 🃂and🃂 🃁night🃁|+|🃅,🃅\n🃁Till🃁 🃅it🃅 🃁bore🃁 🃁an🃁 🃁apple🃁 🃁bright🃁|+|🃂;🃂\n🃅And🃅 🃇my🃇 🃂foe🃂 🃁beheld🃁 🃆it🃆 🃁shine🃁|+|🃆,🃆\n🃆And🃆 🃁he🃁 🃁knew🃁 🃁that🃁 🃇it🃇 🃃was🃃 🃁mine🃁|+|🃇,🃇\n🃃🃃\n🃇And🃇 🃁into🃁 🃈my🃈 🃁garden🃁 🃁stole🃁\n🃁When🃁 🃁the🃁 🃂night🃂 🃁had🃁 🃁veil'd🃁 🃂the🃂 🃁pole🃁|+|🃃:🃃\n🃁In🃁 🃃the🃃 🃂morning🃂 🃁glad🃁 🃇I🃇 🃁see🃁\n🃁My🃁 🃃foe🃃 🃁outstretch'd🃁 🃁beneath🃁 🃄the🃄 🃁tree🃁|+|🃄.🃄",
         "wordCount": 101,
         "author": "William Blake",
-        "quotes": [],
-        "notes": {},
+        "quotes": [
+            [
+                "🃁angry🃁",
+                "🃁with🃁",
+                "🃁my🃁",
+                "🃁friend🃁",
+                "🃁:🃁"
+            ],
+            [
+                "🃁told🃁",
+                "🃂my🃂",
+                "🃁wrath🃁"
+            ],
+            [
+                "🃂wrath🃂",
+                "🃁did🃁",
+                "🃁end🃁"
+            ],
+            [
+                "🃂angry🃂",
+                "🃂with🃂",
+                "🃄my🃄",
+                "🃁foe🃁",
+                "🃂:🃂"
+            ],
+            [
+                "🃂told🃂",
+                "🃁it🃁",
+                "🃁not🃁"
+            ],
+            [
+                "🃃wrath🃃",
+                "🃂did🃂",
+                "🃁grow🃁"
+            ],
+            [
+                "🃁water'd🃁",
+                "🃂it🃂",
+                "🃁in🃁",
+                "🃁fears🃁"
+            ],
+            [
+                "🃁sunned🃁"
+            ],
+            [
+                "🃁soft🃁",
+                "🃁deceitful🃁",
+                "🃁wiles🃁"
+            ],
+            [
+                "🃁bore🃁",
+                "🃁an🃁",
+                "🃁apple🃁",
+                "🃁bright🃁"
+            ],
+            [
+                "🃁glad🃁",
+                "🃇I🃇",
+                "🃁see🃁"
+            ],
+            [
+                "🃁My🃁",
+                "🃃foe🃃",
+                "🃁outstretch'd🃁",
+                "🃁beneath🃁",
+                "🃄the🃄",
+                "🃁tree🃁",
+                "🃄.🃄"
+            ]
+        ],
+        "notes": {
+            "Simple language and meter give poem nursery-rhyme like quality.": [
+                "🃁I🃁",
+                "🃁was🃁",
+                "🃁angry🃁",
+                "🃁with🃁",
+                "🃁my🃁",
+                "🃁friend🃁",
+                "🃁:🃁"
+            ],
+            "First scenario is very short, showing how easy it is if you communicate what you are upset about.": [
+                "🃁I🃁",
+                "🃁was🃁",
+                "🃁angry🃁",
+                "🃁with🃁",
+                "🃁my🃁",
+                "🃁friend🃁",
+                "🃁:🃁",
+                "🃂I🃂",
+                "🃁told🃁",
+                "🃂my🃂",
+                "🃁wrath🃁",
+                "🃁,🃁",
+                "🃃my🃃",
+                "🃂wrath🃂",
+                "🃁did🃁",
+                "🃁end🃁",
+                "🃁.🃁"
+            ],
+            "Focus on the first person shows that the poem is about oneself not what others have done.": [
+                "🃁I🃁",
+                "🃂I🃂",
+                "🃃I🃃",
+                "🃄I🃄"
+            ],
+            "Near repetition shows that only one thing has changed between these scenarios.": [
+                "🃂I🃂",
+                "🃁told🃁",
+                "🃂my🃂",
+                "🃁wrath🃁",
+                "🃄I🃄",
+                "🃂told🃂",
+                "🃁it🃁",
+                "🃁not🃁"
+            ],
+            "Extended metaphor of the speaker's wrath being a tree.": [
+                "🃁grow🃁",
+                "🃁water'd🃁",
+                "🃂it🃂",
+                "🃁sunned🃁",
+                "🃃it🃃",
+                "🃁grew🃁",
+                "🃁bore🃁",
+                "🃁an🃁",
+                "🃁apple🃁",
+                "🃁tree🃁"
+            ],
+            "The speaker has fixated on the wrath and anger, which has made it worse.": [
+                "🃁water'd🃁",
+                "🃂it🃂",
+                "🃁in🃁",
+                "🃁fears🃁",
+                "🃃with🃃",
+                "🃆my🃆",
+                "🃁tears🃁"
+            ],
+            "Speaker continues to hide their wrath, only making it grow.": [
+                "🃁sunned🃁",
+                "🃃it🃃",
+                "🃄with🃄",
+                "🃁smiles🃁",
+                "🃁soft🃁",
+                "🃁deceitful🃁",
+                "🃁wiles🃁"
+            ],
+            "An oxymoron showing the comparison between the speaker's inward thoughts and outward actions.": [
+                "🃁soft🃁",
+                "🃁deceitful🃁"
+            ],
+            "Plants need light to grow - this tree is unnatural.": [
+                "🃁night🃁"
+            ],
+            "References to the Garden of Eden in Genesis which discusses good and evil.": [
+                "🃁apple🃁",
+                "🃁garden🃁"
+            ],
+            "Uses imagery of light to make the apple seem desirable and good when it is not.": [
+                "🃁bright🃁",
+                "🃁shine🃁"
+            ],
+            "The foe is also in the wrong as is stealing.": [
+                "🃁stole🃁"
+            ],
+            "Pole is in reference to the northern star Polaris, meaning it was the dead of night.": [
+                "🃂night🃂",
+                "🃁had🃁",
+                "🃁veil'd🃁",
+                "🃂the🃂",
+                "🃁pole🃁"
+            ],
+            "Speaker is so desensitised by their anger they are happy at another's demise.": [
+                "🃁glad🃁",
+                "🃇I🃇",
+                "🃁see🃁"
+            ],
+            "Speaker's wrath has grown so much he has killed his foe.": [
+                "🃃foe🃃",
+                "🃁outstretch'd🃁",
+                "🃁beneath🃁",
+                "🃄the🃄",
+                "🃁tree🃁"
+            ]
+        },
         "centered": false
     },
     "A Wife in London": {
