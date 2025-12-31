@@ -27,3 +27,9 @@ Percy Bysshe Shelley                            <-- Author
 ```
 
 _Note: The author will be auto capitalised by the program when rendered_
+
+## Speech Marks
+
+Speech Marks `"` are illegal characters that will mess up the HTML. They should not be used, and instead the opening and closing speech marks `“` and `”` should be used.
+
+_Note: The user will be able to use regular quotes `"` in place of the opening and closing quotes, when filling in words._

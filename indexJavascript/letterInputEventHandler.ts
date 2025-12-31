@@ -42,7 +42,10 @@ export function onInputEventHandler(word: string, event: Event, poem: string) {
  */
 function compareInputToLetterId(input: string, id: string): boolean {
     const letter = getLetterFromId(id)
-    return input === letter || (letter === '—' && input === '-')
+    return input === letter 
+            || (letter === '—' && input === '-')
+            || (letter === '“' && input === '"')
+            || (letter === '”' && input === '"')
 }
 
 /**

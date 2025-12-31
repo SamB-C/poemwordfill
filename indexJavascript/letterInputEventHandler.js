@@ -37,7 +37,10 @@ export function onInputEventHandler(word, event, poem) {
  */
 function compareInputToLetterId(input, id) {
     const letter = getLetterFromId(id);
-    return input === letter || (letter === '—' && input === '-');
+    return input === letter
+        || (letter === '—' && input === '-')
+        || (letter === '“' && input === '"')
+        || (letter === '”' && input === '"');
 }
 /**
  * Calculates the letter that the input corresponds to using the ASCII value stored in the id.
