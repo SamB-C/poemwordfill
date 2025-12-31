@@ -59,14 +59,6 @@ export const GET_ID = {
     },
 };
 /**
- * Compares a letter against the digits 0-9 to check if it is a number
- * @param letter The letter to check if it is a number
- * @returns Whether the letter is a digit or not
- */
-export function isDigit(letter) {
-    return ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'].includes(letter);
-}
-/**
  * Compares a letter against the cards 1 to 10 of diamonds to see if it is a card.
  * @param letter Letter to check.
  * @returns Whether the letter is a card or not.
