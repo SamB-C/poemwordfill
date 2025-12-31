@@ -1,7 +1,7 @@
 import { GET_ELEMENT, INPUT_OPTIONS, CARD_ONLY_REGEX } from "./constantsAndTypes.js";
 import { state } from "./index.js";
 import { onInputEventHandler } from "./letterInputEventHandler.js";
-import { GET_ID, WORD_FUNCS, getArrayOfChildrenThatAreInputs, isDigit } from "./utilities.js";
+import { GET_ID, WORD_FUNCS, getArrayOfChildrenThatAreInputs, isCard } from "./utilities.js";
 // =========================== Choose words to replace ===========================
 // --------------------------- Replace quotes in the poem ---------------------------
 /**
@@ -121,7 +121,7 @@ export function replaceWord(word, poem) {
         const wordToHide = GET_ELEMENT.getElementOfWord(wordSection);
         // Create html for the word section
         const wordInUnderScores = wordSection.split('').map((letter) => {
-            if (!isDigit(letter)) {
+            if (!isCard(letter)) {
                 const htmlForLetter = `<input ${INPUT_OPTIONS} id="${GET_ID.getIdForLetter(wordSection, letter)}"></input>`;
                 return htmlForLetter;
             }

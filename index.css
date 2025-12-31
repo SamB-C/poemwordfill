@@ -193,7 +193,7 @@ select:hover {
     top: 0;
     transition: border 1s ease;
     margin-right: 10px;
-    height: 100vh;
+    height: 100%;
 }
 
 #__extra_info_container__, #__options__ {
@@ -239,13 +239,24 @@ select:hover {
 }
 
 
-.credit {
+#__credit_computer__ {
     position: fixed;
     bottom: 0;
-    font-size: 1.5vh;
-    color: var(--credit-color);
+    max-width: 40%;
 }
 
+.credit {
+    color: var(--credit-color);
+    font-size: 1.5vh;
+    margin: 0;
+}
+
+#__feedback__ a {
+    color: rgba(66, 128, 144, 0.7);
+}
+#__feedback__ a:visited {
+    color: rgba(144, 66, 143, 0.7);
+}
 
 
 

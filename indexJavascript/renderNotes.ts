@@ -7,10 +7,12 @@ let numberOfDisplayedNotes = 0;
 
 export function initialiseNotesForPoem() {
     const notesInfo = GET_ELEMENT.getNotesInfo();
-    if (Object.keys(state.poemData[state.currentPoemName].notes).length === 0) {
-        notesInfo.innerHTML = "<i>No notes for poem yet. Coming soon...</i>"
-    } else {
-        notesInfo.innerHTML = "<i>Hover over a word or phrase to show some notes about it</i>"
+    if (notesInfo !== null) {
+        if (Object.keys(state.poemData[state.currentPoemName].notes).length === 0) {
+            notesInfo.innerHTML = "<i>No notes for poem yet. Coming soon...</i>"
+        } else {
+            notesInfo.innerHTML = "<i>Hover over a word or phrase to show some notes about it</i>"
+        }
     }
     const currentPoemContent: string = state.poemData[state.currentPoemName].convertedPoem;
     const allWordSectionsInPoem: Array<string> = getAllWordSectionsInPoem(currentPoemContent);
@@ -138,14 +140,18 @@ function getAssociatedNotes(wordSection: string): AssociatedNotesType {
 
 function hideNotesInfo() {
     const notesInfo = GET_ELEMENT.getNotesInfo();
-    notesInfo.classList.remove('noteInfoIn');
-    notesInfo.classList.add('noteInfoOut');
+    if (notesInfo !== null) {
+        notesInfo.classList.remove('noteInfoIn');
+        notesInfo.classList.add('noteInfoOut');
+    }
 }
 
 function showNotesInfo() {
     const notesInfo = GET_ELEMENT.getNotesInfo();
-    notesInfo.classList.remove('noteInfoOut');
-    notesInfo.classList.add('noteInfoIn');
+    if (notesInfo !== null) {
+        notesInfo.classList.remove('noteInfoOut');
+        notesInfo.classList.add('noteInfoIn');
+    }
 }
 
 function getNumberOfDisplayedNotes() {
