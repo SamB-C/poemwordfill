@@ -4,8 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
-<span style="color:purple">_01-01-2026_</span>  
-Optional section for changes that have been merged but not yet officially "released".
+<span style="color:purple">\_\_</span>
+Add N&Q for Edexcel Conflict
 
 ## Released
 
