@@ -1,4 +1,4 @@
-import { Anthologies, convertedPoemsJSON, FAKE_SPACE_HTML_ELEMENT, GET_ELEMENT, CARD_ONLY_REGEX, POEM_AUTHOR_ID, POEM_SELECT_ID, State, WORDS } from "./constantsAndTypes.js";
+import { Anthologies, convertedPoemsJSON, FAKE_SPACE_HTML_ELEMENT, GET_ELEMENT, CARD_ONLY_REGEX, POEM_AUTHOR_ID, POEM_SELECT_ID, State, WORDS, QUOTES } from "./constantsAndTypes.js";
 import { initialisePoemSelect, initialiseRangebar, initialiseWordsOrQuotesRadioButtons, initialiseGuideInputs, initialiseAnthologySelect, disableQuotes } from "./inputs.js";
 import { initialiseTryAgainLink } from "./letterInputEventHandler.js";
 import { initialiseNotesForPoem } from "./renderNotes.js";
@@ -63,8 +63,8 @@ function initialiseState(poems: convertedPoemsJSON, anthologiesData: Anthologies
         anthologies: anthologiesData,
         currentPoemName: 'The Manhunt',
         poemData: poems,
-        percentageWordsToRemove: 5,
-        removalType: WORDS,
+        percentageWordsToRemove: 10,
+        removalType: QUOTES,
         focusedWord: '',
         wordsNotCompleted: [],
         wordsNotCompletedPreserved: [],
