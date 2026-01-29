@@ -1,8 +1,13 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-A project where the user needs to fill in the blanks in a poem
+# Poem Word Fill
 
-# Developer Notes:
+Repository for [samsonbc.com](samsonbc.com), a website developed for use by GCSE English Literature students to revise their poetry anthology.
+
+For photos and regular updates, visit [@samsonbc_com](https://www.instagram.com/samsonbc_com/) on instagram.
+
+
+## Developer Notes:
 
 1. Pre-processing
    To run the preprocessing server run the command 'npm run server'
